@@ -3,7 +3,7 @@
 namespace SimpleSample
 {
     /// <summary>   A program. </summary>
-    class Program
+    internal class Program
     {
         /// <summary>   Main entry-point for this application. </summary>
         /// <param name="args"> An array of command-line argument strings. </param>
