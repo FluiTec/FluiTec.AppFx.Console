@@ -19,9 +19,6 @@ namespace SimpleSample
         {
             var services = InitializeServices(ConfigureServices);
             var settings = services.GetRequiredService<ConsoleSettings>();
-
-            Console.WriteLine(settings.Test);
-            Console.ReadLine();
         }
 
         /// <summary>   Configure services. </summary>
