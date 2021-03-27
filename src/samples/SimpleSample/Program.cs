@@ -1,5 +1,4 @@
 ﻿using System;
-using FluiTec.AppFx.Console.Controls;
 using FluiTec.AppFx.Options.Helpers;
 using FluiTec.AppFx.Options.Managers;
 using Microsoft.Extensions.Configuration;
@@ -16,8 +15,6 @@ namespace SimpleSample
         {
             var services = InitializeServices(ConfigureServices);
             //var settings = services.GetRequiredService<ConsoleSettings>();
-            
-            TestMenu();
         }
 
         /// <summary>   Configure services. </summary>
@@ -27,16 +24,6 @@ namespace SimpleSample
         {
             //manager.ConfigureValidator(new ConsoleSettingsValidator());
             //services.Configure<ConsoleSettings>(manager);
-        }
-
-        private static void TestMenu()
-        {
-            var menu = new SelectMenu<string> {Items = {
-                new SelectMenuItem<string>("Data", "Data", "Open Data-Configuration"),
-                new SelectMenuItem<string>("Identity", "Identity", "Open Identity-Configuration"),
-                new SelectMenuItem<string>("Localization", "Localization", "Open Localization-Configuration")
-            }};
-            var item = menu.SelectItem();
         }
 
         #region Helpers

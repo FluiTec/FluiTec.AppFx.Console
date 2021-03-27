@@ -30,6 +30,7 @@ namespace FluiTec.AppFx.Console.Controls
         /// <returns>   A SelectMenuItem&lt;T&gt;</returns>
         public SelectMenuItem<T> SelectItem(string selectTitle = "Please select any of the following options:")
         {
+            var countLength = Items.Count.ToString().Length;
             var selected = 0;
             var done = false;
             
@@ -44,12 +45,13 @@ namespace FluiTec.AppFx.Console.Controls
                     if (selected == i)
                     {
                         System.Console.ForegroundColor = SelectedItemColor;
-                        System.Console.Write("> ");
+                        System.Console.Write(">");
+                        System.Console.Write(new string(' ', countLength));
                     }
                     else
                     {
                         System.Console.ForegroundColor = DefaultItemColor;
-                        System.Console.Write("  ");
+                        System.Console.Write(new string(' ', countLength+1));
                     }
 
                     System.Console.WriteLine($"{i+1}.) {Items[i].Name} ({Items[i].Description})");
