@@ -1,9 +1,6 @@
 ﻿using System;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
-using FluiTec.AppFx.Console.Settings;
+using FluiTec.AppFx.Console.Controls;
+using FluiTec.AppFx.Options.Helpers;
 using FluiTec.AppFx.Options.Managers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +15,9 @@ namespace SimpleSample
         private static void Main(string[] args)
         {
             var services = InitializeServices(ConfigureServices);
-            var settings = services.GetRequiredService<ConsoleSettings>();
+            //var settings = services.GetRequiredService<ConsoleSettings>();
+            
+            TestMenu();
         }
 
         /// <summary>   Configure services. </summary>
@@ -26,39 +25,27 @@ namespace SimpleSample
         /// <param name="manager">  The manager. </param>
         private static void ConfigureServices(ServiceCollection services, ValidatingConfigurationManager manager)
         {
-            manager.ConfigureValidator(new ConsoleSettingsValidator());
-            services.Configure<ConsoleSettings>(manager);
+            //manager.ConfigureValidator(new ConsoleSettingsValidator());
+            //services.Configure<ConsoleSettings>(manager);
+        }
+
+        private static void TestMenu()
+        {
+            var menu = new SelectMenu<string> {Items = {
+                new SelectMenuItem<string>("Data", "Data", "Open Data-Configuration"),
+                new SelectMenuItem<string>("Identity", "Identity", "Open Identity-Configuration"),
+                new SelectMenuItem<string>("Localization", "Localization", "Open Localization-Configuration")
+            }};
+            var item = menu.SelectItem();
         }
 
         #region Helpers
-        
-        /// <summary>   Gets application root. </summary>
-        /// <exception cref="InvalidOperationException">    Thrown when the requested operation is
-        ///                                                 invalid. </exception>
-        /// <returns>   The application root. </returns>
-        private static string GetApplicationRoot()
-        {
-            var exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                var appPathMatcher = new Regex(@"(?<!fil)[A-Za-z]:\\+[\S\s]*?(?=\\+bin)");
-                var appRoot = appPathMatcher.Match(exePath ?? throw new InvalidOperationException()).Value;
-                return appRoot;
-            }
-            else
-            {
-                var appPathMatcher = new Regex(@"(?<!file)\/+[\S\s]*?(?=\/+bin)");
-                var appRoot = appPathMatcher.Match(exePath ?? throw new InvalidOperationException()).Value;
-                return appRoot;
-            }
-        }
 
         /// <summary>   Gets configuration root. </summary>
         /// <returns>   The configuration root. </returns>
         private static IConfigurationRoot GetConfigurationRoot()
         {
-            var path = GetApplicationRoot();
+            var path = DirectoryHelper.GetApplicationRoot();
             Console.WriteLine($"BasePath: {path}");
             var config = new ConfigurationBuilder()
                 .SetBasePath(path)
