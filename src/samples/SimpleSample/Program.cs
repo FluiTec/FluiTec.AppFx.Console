@@ -1,8 +1,10 @@
-﻿using System;
+﻿using FluiTec.AppFx.Console;
+using FluiTec.AppFx.Console.Module;
 using FluiTec.AppFx.Options.Helpers;
 using FluiTec.AppFx.Options.Managers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace SimpleSample
 {
@@ -13,17 +15,28 @@ namespace SimpleSample
         /// <param name="args"> An array of command-line argument strings. </param>
         private static void Main(string[] args)
         {
-            var services = InitializeServices(ConfigureServices);
-            //var settings = services.GetRequiredService<ConsoleSettings>();
+            new InteractiveConsoleHost(GetConfigurationRoot(), ConfigureServices)
+                .RunInteractive();
         }
 
         /// <summary>   Configure services. </summary>
         /// <param name="services"> The services. </param>
         /// <param name="manager">  The manager. </param>
-        private static void ConfigureServices(ServiceCollection services, ValidatingConfigurationManager manager)
+        private static void ConfigureServices(IServiceCollection services, ValidatingConfigurationManager manager)
         {
-            //manager.ConfigureValidator(new ConsoleSettingsValidator());
-            //services.Configure<ConsoleSettings>(manager);
+            services.AddTransient<IConsoleModule>(provider => new ConsoleModule
+            {
+                Name = "Data", 
+                Description = "Data-Module",
+                HelpText = "Allows to interact directly with the data-module."
+            });
+
+            services.AddTransient<IConsoleModule>(provider => new ConsoleModule
+            {
+                Name = "Identity", 
+                Description = "Identity-Module", 
+                HelpText = "Allows to interact directly with the identity-module."
+            });
         }
 
         #region Helpers
@@ -33,24 +46,10 @@ namespace SimpleSample
         private static IConfigurationRoot GetConfigurationRoot()
         {
             var path = DirectoryHelper.GetApplicationRoot();
-            Console.WriteLine($"BasePath: {path}");
             var config = new ConfigurationBuilder()
                 .SetBasePath(path)
                 .AddJsonFile("appsettings.json", false, true).Build();
             return config;
-        }
-
-        /// <summary>   Initializes the services. </summary>
-        /// <param name="configureServices">    The configure services. </param>
-        /// <returns>   An IServiceProvider. </returns>
-        private static IServiceProvider InitializeServices(Action<ServiceCollection, ValidatingConfigurationManager> configureServices)
-        {
-            var manager = new ConsoleReportingConfigurationManager(GetConfigurationRoot());
-            var services = new ServiceCollection();
-            
-            configureServices(services, manager);
-
-            return services.BuildServiceProvider();
         }
 
         #endregion

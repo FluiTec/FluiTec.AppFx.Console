@@ -8,12 +8,12 @@ namespace FluiTec.AppFx.Console.Controls
     {
         /// <summary>   Gets the items.</summary>
         /// <value> The items.</value>
-        public List<SelectMenuItem<T>> Items { get; }
+        public List<ISelectMenuItem<T>> Items { get; }
 
         /// <summary>   Default constructor.</summary>
         public SelectMenu()
         {
-            Items = new List<SelectMenuItem<T>>();
+            Items = new List<ISelectMenuItem<T>>();
             DefaultItemColor = ConsoleColor.White;
             SelectedItemColor = ConsoleColor.Cyan;
         }
@@ -28,7 +28,7 @@ namespace FluiTec.AppFx.Console.Controls
 
         /// <summary>   Select item.</summary>
         /// <returns>   A SelectMenuItem&lt;T&gt;</returns>
-        public SelectMenuItem<T> SelectItem(string selectTitle = "Please select any of the following options:")
+        public ISelectMenuItem<T> SelectItem(string selectTitle = "Please select any of the following options using <UP>/<DOWN> + <ENTER>:")
         {
             var countLength = Items.Count.ToString().Length;
             var selected = 0;
@@ -36,9 +36,8 @@ namespace FluiTec.AppFx.Console.Controls
             
             while (!done)
             {
-                //System.Console.Clear();
+                System.Console.ForegroundColor = DefaultItemColor;
                 System.Console.WriteLine(selectTitle);
-                System.Console.WriteLine("_______________________________________");
                 System.Console.WriteLine();
                 for (var i = 0; i < Items.Count; i++)
                 {
@@ -57,7 +56,6 @@ namespace FluiTec.AppFx.Console.Controls
                     System.Console.WriteLine($"{i+1}.) {Items[i].Name} ({Items[i].Description})");
                     System.Console.ResetColor();
                 }
-                System.Console.WriteLine("_______________________________________");
 
                 switch (System.Console.ReadKey(true).Key)
                 {
@@ -73,7 +71,7 @@ namespace FluiTec.AppFx.Console.Controls
                 }
                 
                 if (!done)
-                    System.Console.CursorTop -= Items.Count + 4;
+                    System.Console.CursorTop -= Items.Count + 2;
             }
 
             return Items[selected];
