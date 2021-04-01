@@ -1,4 +1,4 @@
-﻿namespace FluiTec.AppFx.Console.Module
+﻿namespace FluiTec.AppFx.Console.Menu
 {
     /// <summary>   Interface for item presenter. </summary>
     public interface IItemPresenter

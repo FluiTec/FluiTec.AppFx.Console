@@ -1,11 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FluiTec.AppFx.Console.Extensions;
 
-namespace FluiTec.AppFx.Console.Module
+namespace FluiTec.AppFx.Console.Menu
 {
     public abstract class BaseMenuItem : IConsoleMenuItem
     {
+        /// <summary>   Gets the host. </summary>
+        /// <value> The host. </value>
+        public InteractiveConsoleHost Host { get; }
+
+        /// <summary>   Gets or sets the default color. </summary>
+        /// <value> The default color. </value>
+        public ConsoleColor DefaultColor { get; protected set; }
+
         /// <summary>   Gets the name. </summary>
         /// <value> The name. </value>
         public string Name { get; set; }
@@ -35,18 +44,27 @@ namespace FluiTec.AppFx.Console.Module
         public bool HasChildren => Children.Any();
 
         /// <summary>   Specialized default constructor for use only by derived class. </summary>
-        protected BaseMenuItem()
+        protected BaseMenuItem(InteractiveConsoleHost host)
         {
+            Host = host;
             Children = new List<IConsoleMenuItem>();
         }
 
         /// <summary>   Specialized default constructor for use only by derived class. </summary>
+        /// <param name="host">     The host. </param>
         /// <param name="children"> The children. </param>
-        protected BaseMenuItem(IEnumerable<IConsoleMenuItem> children)
+        protected BaseMenuItem(InteractiveConsoleHost host, IEnumerable<IConsoleMenuItem> children)
         {
+            Host = host;
             Children = new List<IConsoleMenuItem>(children ?? Array.Empty<IConsoleMenuItem>());
             foreach (var child in Children)
                 child.Parent = this;
+        }
+
+        /// <summary>   Executes the select action. </summary>
+        public virtual void OnSelect()
+        {
+            ConsoleExtension.WriteLine($">>{Name}", DefaultColor);
         }
     }
 }

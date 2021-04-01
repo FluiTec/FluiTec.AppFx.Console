@@ -3,7 +3,7 @@ using System.Linq;
 using FluiTec.AppFx.Console.Controls;
 using FluiTec.AppFx.Console.Extensions;
 
-namespace FluiTec.AppFx.Console.Module
+namespace FluiTec.AppFx.Console.Menu
 {
     /// <summary>   A presenter for default items information. </summary>
     public class DefaultItemPresenter : IItemPresenter
@@ -52,11 +52,10 @@ namespace FluiTec.AppFx.Console.Module
             ConsoleExtension.WriteLineCentered(item.Name, SeparatorChar, TitleColor, DefaultColor);
             ConsoleExtension.WriteLineCentered(item.Description, SeparatorChar, TitleColor, DefaultColor);
             ConsoleExtension.WriteLine(new string(SeparatorChar, System.Console.WindowWidth), DefaultColor);
-            if (!string.IsNullOrWhiteSpace(item.HelpText))
-            {
-                ConsoleExtension.WriteLine(item.HelpText, TitleColor);
-                ConsoleExtension.WriteLine(new string(SeparatorChar, System.Console.WindowWidth), DefaultColor);
-            }
+
+            if (string.IsNullOrWhiteSpace(item.HelpText)) return;
+            ConsoleExtension.WriteLine(item.HelpText, TitleColor);
+            ConsoleExtension.WriteLine(new string(SeparatorChar, System.Console.WindowWidth), DefaultColor);
         }
 
         /// <summary>   Present children. </summary>
@@ -67,7 +66,18 @@ namespace FluiTec.AppFx.Console.Module
 
             var menu = new SelectMenu<IConsoleMenuItem>();
             menu.Items.AddRange(item.Children.Select(i => new SelectMenuItem<IConsoleMenuItem>(i, i.Name, i.Description)));
+
+            if (item.Parent != null)
+            {
+                var backItem = new BackMenuItem(Host, item);
+                menu.Items.Add(new SelectMenuItem<IConsoleMenuItem>(backItem, backItem.Name, backItem.Description));
+            }
+
+            var quitItem = new QuitMenuItem(Host, item);
+            menu.Items.Add(new SelectMenuItem<IConsoleMenuItem>(quitItem, quitItem.Name, quitItem.Description));
+
             Host.ActiveItem = menu.SelectItem().Item;
+            Host.ActiveItem.OnSelect();
         }
     }
 }

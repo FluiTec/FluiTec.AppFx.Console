@@ -1,10 +1,9 @@
 ﻿using FluiTec.AppFx.Console;
-using FluiTec.AppFx.Console.Module;
+using FluiTec.AppFx.Console.Menu;
 using FluiTec.AppFx.Options.Helpers;
 using FluiTec.AppFx.Options.Managers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace SimpleSample
 {
@@ -24,14 +23,14 @@ namespace SimpleSample
         /// <param name="manager">  The manager. </param>
         private static void ConfigureServices(IServiceCollection services, ValidatingConfigurationManager manager)
         {
-            services.AddTransient<IConsoleModule>(provider => new ConsoleModule
+            services.AddTransient<IConsoleModule>(provider => new ConsoleModule(provider.GetRequiredService<InteractiveConsoleHost>())
             {
                 Name = "Data", 
                 Description = "Data-Module",
                 HelpText = "Allows to interact directly with the data-module."
             });
 
-            services.AddTransient<IConsoleModule>(provider => new ConsoleModule
+            services.AddTransient<IConsoleModule>(provider => new ConsoleModule(provider.GetRequiredService<InteractiveConsoleHost>())
             {
                 Name = "Identity", 
                 Description = "Identity-Module", 

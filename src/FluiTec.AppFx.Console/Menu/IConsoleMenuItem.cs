@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
 
-namespace FluiTec.AppFx.Console.Module
+namespace FluiTec.AppFx.Console.Menu
 {
     /// <summary>   Interface for console menu item. </summary>
     public interface IConsoleMenuItem
     {
+        /// <summary>   Gets the host. </summary>
+        /// <value> The host. </value>
+        public InteractiveConsoleHost Host { get; }
+
         /// <summary>   Gets the name. </summary>
         /// <value> The name. </value>
         public string Name { get; set; }
@@ -32,5 +36,8 @@ namespace FluiTec.AppFx.Console.Module
         /// <summary>   Gets a value indicating whether this  has children. </summary>
         /// <value> True if this  has children, false if not. </value>
         bool HasChildren { get; }
+
+        /// <summary>   Executes the select action. </summary>
+        void OnSelect();
     }
 }

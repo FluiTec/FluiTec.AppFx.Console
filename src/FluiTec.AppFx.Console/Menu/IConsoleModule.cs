@@ -1,13 +1,8 @@
-﻿namespace FluiTec.AppFx.Console.Module
+﻿namespace FluiTec.AppFx.Console.Menu
 {
     /// <summary>   A console module. </summary>
     public interface IConsoleModule : IConsoleMenuItem
     {
         
-    }
-
-    public class ConsoleModule : BaseMenuItem, IConsoleModule
-    {
-
     }
 }

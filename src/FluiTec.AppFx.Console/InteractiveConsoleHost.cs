@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Linq;
-using FluiTec.AppFx.Console.Module;
+using FluiTec.AppFx.Console.Menu;
 using FluiTec.AppFx.Options.Managers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,10 +38,13 @@ namespace FluiTec.AppFx.Console
         {
             Initialize();
 
-            var root = new RootMenuItem("Interactive Console", "Pick any menu-item using <UP>/<DOWN> and <ENTER>", _serviceProvider.GetServices<IConsoleModule>());
+            var root = new RootMenuItem("Interactive Console", "Pick any menu-item using <UP>/<DOWN> and <ENTER>", this, _serviceProvider.GetServices<IConsoleModule>());
             ActiveItem = root;
 
-            _serviceProvider.GetRequiredService<IItemPresenter>().Present(ActiveItem);
+            var presenter = _serviceProvider.GetRequiredService<IItemPresenter>();
+
+            while(ActiveItem != null)
+                presenter.Present(ActiveItem);
         }
 
         /// <summary>   Initializes this.  </summary>
