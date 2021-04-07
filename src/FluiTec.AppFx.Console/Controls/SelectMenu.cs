@@ -39,6 +39,7 @@ namespace FluiTec.AppFx.Console.Controls
                 System.Console.ForegroundColor = DefaultItemColor;
                 System.Console.WriteLine(selectTitle);
                 System.Console.WriteLine();
+
                 for (var i = 0; i < Items.Count; i++)
                 {
                     if (selected == i)
