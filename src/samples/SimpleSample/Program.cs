@@ -1,9 +1,4 @@
 ﻿using FluiTec.AppFx.Console;
-using FluiTec.AppFx.Console.Menu;
-using FluiTec.AppFx.Options.Helpers;
-using FluiTec.AppFx.Options.Managers;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace SimpleSample
 {
@@ -14,43 +9,8 @@ namespace SimpleSample
         /// <param name="args"> An array of command-line argument strings. </param>
         private static void Main(string[] args)
         {
-            new InteractiveConsoleHost(GetConfigurationRoot(), ConfigureServices)
+            new InteractiveConsoleHost()
                 .RunInteractive();
         }
-
-        /// <summary>   Configure services. </summary>
-        /// <param name="services"> The services. </param>
-        /// <param name="manager">  The manager. </param>
-        private static void ConfigureServices(IServiceCollection services, ValidatingConfigurationManager manager)
-        {
-            services.AddTransient<IConsoleModule>(provider => new ConsoleModule(provider.GetRequiredService<InteractiveConsoleHost>())
-            {
-                Name = "Data", 
-                Description = "Data-Module",
-                HelpText = "Allows to interact directly with the data-module."
-            });
-
-            services.AddTransient<IConsoleModule>(provider => new ConsoleModule(provider.GetRequiredService<InteractiveConsoleHost>())
-            {
-                Name = "Identity", 
-                Description = "Identity-Module", 
-                HelpText = "Allows to interact directly with the identity-module."
-            });
-        }
-
-        #region Helpers
-
-        /// <summary>   Gets configuration root. </summary>
-        /// <returns>   The configuration root. </returns>
-        private static IConfigurationRoot GetConfigurationRoot()
-        {
-            var path = DirectoryHelper.GetApplicationRoot();
-            var config = new ConfigurationBuilder()
-                .SetBasePath(path)
-                .AddJsonFile("appsettings.json", false, true).Build();
-            return config;
-        }
-
-        #endregion
     }
 }
