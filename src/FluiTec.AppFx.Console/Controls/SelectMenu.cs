@@ -28,7 +28,7 @@ namespace FluiTec.AppFx.Console.Controls
 
         /// <summary>   Select item.</summary>
         /// <returns>   A SelectMenuItem&lt;T&gt;</returns>
-        public ISelectMenuItem<T> SelectItem(string selectTitle = "Please select any of the following options using <UP>/<DOWN> + <ENTER>:")
+        public ISelectMenuItem<T> SelectItem()
         {
             var countLength = Items.Count.ToString().Length;
             var selected = 0;
@@ -37,8 +37,6 @@ namespace FluiTec.AppFx.Console.Controls
             while (!done)
             {
                 System.Console.ForegroundColor = DefaultItemColor;
-                System.Console.WriteLine(selectTitle);
-                System.Console.WriteLine();
 
                 for (var i = 0; i < Items.Count; i++)
                 {
@@ -72,7 +70,7 @@ namespace FluiTec.AppFx.Console.Controls
                 }
                 
                 if (!done)
-                    System.Console.CursorTop -= Items.Count + 2;
+                    System.Console.CursorTop -= Items.Count;
             }
 
             return Items[selected];

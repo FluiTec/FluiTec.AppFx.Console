@@ -1,3 +1,5 @@
+using System.Linq;
+using FluiTec.AppFx.Console;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
@@ -7,7 +9,13 @@ namespace SimpleSample
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+
+            if (args.Any() && args.Contains("-i"))
+                InteractiveConsoleHost.FromHost(host)
+                    .RunInteractive(typeof(Program).Assembly.GetName().Name);
+            else
+                host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
