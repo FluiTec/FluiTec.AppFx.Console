@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SimpleSample.ConsoleModules.Config;
 using SimpleSample.ConsoleModules.Data;
 using SimpleSample.Data;
 using SimpleSample.Data.LiteDb;
@@ -52,7 +53,8 @@ namespace SimpleSample
             var builder = new ConfigurationBuilder()
                 .SetBasePath(environment.ContentRootPath)
                 .AddJsonFile("appsettings.json", false, true)
-                .AddJsonFile("appsettings.secret.json", true, true)
+                .AddJsonFile("appsettings.conf.json", false, true)
+                .AddJsonFile("appsettings.secret.json", false, true)
                 .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", true);
 
             builder.AddEnvironmentVariables();
@@ -103,13 +105,9 @@ namespace SimpleSample
         /// <param name="services"> The services. </param>
         private void ConfigureCli(IServiceCollection services)
         {
+            services.AddSingleton(Configuration);
             services.AddSingleton<IInteractiveConsoleItem>(new DataServiceInteractiveConsoleItem());
-            services.AddSingleton<IInteractiveConsoleItem>(
-                new ServiceInteractiveConsoleItem("Authentication", "Change authentication related settings"));
-            services.AddSingleton<IInteractiveConsoleItem>(
-                new ServiceInteractiveConsoleItem("Authorization", "Change authorization related settings"));
-            services.AddSingleton<IInteractiveConsoleItem>(
-                new ServiceInteractiveConsoleItem("Security", "Change security related settings"));
+            services.AddSingleton<IInteractiveConsoleItem>(new ConfigServiceInteractiveConsoleItem());
         }
 
         #endregion

@@ -14,11 +14,11 @@ namespace FluiTec.AppFx.Console.Items
 
         /// <summary>   Gets or sets the name. </summary>
         /// <value> The name. </value>
-        public string Name { get; protected set; }
+        public virtual string Name { get; protected set; }
 
         /// <summary>   Gets or sets the description. </summary>
         /// <value> The description. </value>
-        public string Description { get; protected set; }
+        public virtual string Description { get; protected set; }
 
         /// <summary>   Gets or sets the host. </summary>
         /// <value> The host. </value>

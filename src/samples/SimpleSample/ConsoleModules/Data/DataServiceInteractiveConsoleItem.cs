@@ -25,7 +25,7 @@ namespace SimpleSample.ConsoleModules.Data
             if (options != null)
             {
                 Children.Clear();
-                Children.Add(new ConfigureDataServiceInteractiveConsoleItem(options));
+                //Children.Add(new ConfigureDataServiceInteractiveConsoleItem(options));
                 Children.Add(new MigrationServiceInteractiveConsoleItem(options));
             }
 

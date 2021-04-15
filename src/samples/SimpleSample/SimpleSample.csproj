@@ -8,7 +8,13 @@
     <ProjectReference Include="..\..\FluiTec.AppFx.Console\FluiTec.AppFx.Console.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='Debug'">
+    <ProjectReference Include="$(SolutionDir)\..\fluitec.appfx.data\src\FluiTec.AppFx.Data.Dynamic\FluiTec.AppFx.Data.Dynamic.csproj" />
+    <ProjectReference Include="$(SolutionDir)\..\fluitec.appfx.data\src\FluiTec.AppFx.Data.Sql\FluiTec.AppFx.Data.Sql.csproj" />
+    <ProjectReference Include="$(SolutionDir)\..\fluitec.appfx.options\src\FluiTec.AppFx.Options\FluiTec.AppFx.Options.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)'=='Release'">
     <PackageReference Include="FluiTec.AppFx.Data.Dynamic" Version="1.0.66"></PackageReference>
     <PackageReference Include="FluiTec.AppFx.Data.Sql" Version="1.0.66"></PackageReference>
     <PackageReference Include="FluiTec.AppFx.Options" Version="1.1.47"></PackageReference>
