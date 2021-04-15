@@ -1,4 +1,6 @@
 ﻿using System;
+using FluiTec.AppFx.Data.Entities;
+using FluiTec.AppFx.Data.EntityNameServices;
 using SimpleSample.Data.Schema;
 
 namespace SimpleSample.Data.Entities

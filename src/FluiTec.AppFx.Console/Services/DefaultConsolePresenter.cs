@@ -84,8 +84,6 @@ namespace FluiTec.AppFx.Console.Services
         /// <param name="items">    The console-items. </param>
         public void Present(IEnumerable<IInteractiveConsoleItem> items)
         {
-            WriteLine(new string(SeparatorChar, System.Console.WindowWidth));
-
             var interactiveConsoleItems = items.ToList();
 
             if (!interactiveConsoleItems.Any())
@@ -98,15 +96,18 @@ namespace FluiTec.AppFx.Console.Services
         /// <param name="items">    The console-items. </param>
         public void Pick(IEnumerable<IInteractiveConsoleItem> items)
         {
+            WriteLine(new string(SeparatorChar, System.Console.WindowWidth));
+
             var interactiveConsoleItems = items.ToList();
 
-            if (interactiveConsoleItems.First().HasParent)
+            var first = interactiveConsoleItems.First();
+            if (first.HasParent)
             {
-                interactiveConsoleItems.Add(interactiveConsoleItems.First().Parent.HasParent
-                    ? new BackInteractiveConsoleItem(interactiveConsoleItems.First().Parent.Parent.Children)
-                    : new BackInteractiveConsoleItem(interactiveConsoleItems.First().Host.ConsoleModules));
+                interactiveConsoleItems.Add(first.Parent.HasParent
+                    ? new BackInteractiveConsoleItem(first.Parent.Parent.Children) {Parent = first.Parent}
+                    : new BackInteractiveConsoleItem(first.Host.ConsoleModules) {Parent = first.Parent});
             }
-            interactiveConsoleItems.Add(new ExitInteractiveConsoleItem());
+            interactiveConsoleItems.Add(new ExitInteractiveConsoleItem {Parent = first.Parent});
 
             var menu = new SelectMenu<IInteractiveConsoleItem>
             {

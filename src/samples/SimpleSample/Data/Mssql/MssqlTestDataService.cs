@@ -1,4 +1,10 @@
 ﻿using System;
+using FluiTec.AppFx.Data.Dapper;
+using FluiTec.AppFx.Data.Dapper.DataServices;
+using FluiTec.AppFx.Data.Dapper.UnitsOfWork;
+using FluiTec.AppFx.Data.DataServices;
+using FluiTec.AppFx.Data.Migration;
+using FluiTec.AppFx.Data.UnitsOfWork;
 using Microsoft.Extensions.Logging;
 using SimpleSample.Data.Dapper;
 using SimpleSample.Data.Schema;

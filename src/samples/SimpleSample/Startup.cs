@@ -1,13 +1,24 @@
 using System;
 using FluiTec.AppFx.Console.Items;
-using FluiTec.AppFx.Console.Services;
+using FluiTec.AppFx.Data.Dapper.Mssql;
+using FluiTec.AppFx.Data.Dapper.Mysql;
+using FluiTec.AppFx.Data.Dapper.Pgsql;
+using FluiTec.AppFx.Data.Dynamic.Configuration;
+using FluiTec.AppFx.Data.LiteDb;
+using FluiTec.AppFx.Options.Managers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SimpleSample.ConsoleModules;
+using Microsoft.Extensions.Logging;
+using SimpleSample.ConsoleModules.Data;
+using SimpleSample.Data;
+using SimpleSample.Data.LiteDb;
+using SimpleSample.Data.Mssql;
+using SimpleSample.Data.Mysql;
+using SimpleSample.Data.Pgsql;
 
 namespace SimpleSample
 {
@@ -19,6 +30,10 @@ namespace SimpleSample
         /// <summary>	Gets the configuration. </summary>
         /// <value>	The configuration. </value>
         public IConfigurationRoot Configuration { get; }
+
+        /// <summary>   Gets the manager for configuration. </summary>
+        /// <value> The configuration manager. </value>
+        public ConfigurationManager ConfigurationManager { get; }
 
         /// <summary>Gets the environment.</summary>
         /// <value>The environment.</value>
@@ -42,6 +57,7 @@ namespace SimpleSample
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+            ConfigurationManager = new ConsoleReportingConfigurationManager(Configuration);
         }
 
         #endregion
@@ -59,7 +75,28 @@ namespace SimpleSample
         /// <param name="services"> The services. </param>
         private void ConfigureAspNetCore(IServiceCollection services)
         {
-
+            services.ConfigureDynamicDataProvider(ConfigurationManager,
+                new Func<DynamicDataOptions, IServiceProvider, ITestDataService>((options, provider) =>
+                    {
+                        return options.Provider switch
+                        {
+                            DataProvider.LiteDb => new LiteDbTestDataService(
+                                provider.GetRequiredService<LiteDbServiceOptions>(),
+                                provider.GetService<ILoggerFactory>()),
+                            DataProvider.Mssql => new MssqlTestDataService(
+                                provider.GetRequiredService<MssqlDapperServiceOptions>(),
+                                provider.GetService<ILoggerFactory>()),
+                            DataProvider.Pgsql => new PgsqlTestDataService(
+                                provider.GetRequiredService<PgsqlDapperServiceOptions>(),
+                                provider.GetService<ILoggerFactory>()),
+                            DataProvider.Mysql => new MysqlTestDataService(
+                                provider.GetRequiredService<MysqlDapperServiceOptions>(),
+                                provider.GetService<ILoggerFactory>()),
+                            _ => throw new NotImplementedException()
+                        };
+                    }
+                )
+            );
         }
 
         /// <summary>   Configure CLI. </summary>

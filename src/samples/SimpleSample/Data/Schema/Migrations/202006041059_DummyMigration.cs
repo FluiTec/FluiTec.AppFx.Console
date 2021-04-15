@@ -1,4 +1,8 @@
-﻿namespace SimpleSample.Data.Schema.Migrations
+﻿using FluentMigrator;
+using FluiTec.AppFx.Data.Dapper.Extensions;
+using FluiTec.AppFx.Data.Dapper.Migration;
+
+namespace SimpleSample.Data.Schema.Migrations
 {
     /// <summary>   A dummy migration. </summary>
     [DapperMigration(2020, 06, 04, 10, 59, "Achim Schnell")]

@@ -1,4 +1,10 @@
 ﻿using System;
+using FluiTec.AppFx.Data.DataServices;
+using FluiTec.AppFx.Data.EntityNameServices;
+using FluiTec.AppFx.Data.LiteDb;
+using FluiTec.AppFx.Data.LiteDb.DataServices;
+using FluiTec.AppFx.Data.LiteDb.UnitsOfWork;
+using FluiTec.AppFx.Data.UnitsOfWork;
 using Microsoft.Extensions.Logging;
 
 namespace SimpleSample.Data.LiteDb

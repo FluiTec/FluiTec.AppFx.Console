@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using FluiTec.AppFx.Data.LiteDb.DataServices;
+using FluiTec.AppFx.Data.LiteDb.UnitsOfWork;
+using FluiTec.AppFx.Data.UnitsOfWork;
+using Microsoft.Extensions.Logging;
 using SimpleSample.Data.Repositories;
 
 namespace SimpleSample.Data.LiteDb

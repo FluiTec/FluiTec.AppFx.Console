@@ -1,6 +1,8 @@
 ﻿using FluiTec.AppFx.Console.Items;
+using FluiTec.AppFx.Data.Dynamic.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace SimpleSample.ConsoleModules
+namespace SimpleSample.ConsoleModules.Data
 {
     /// <summary>   A data service interactive console item. </summary>
     public class DataServiceInteractiveConsoleItem : ServiceInteractiveConsoleItem
@@ -18,7 +20,15 @@ namespace SimpleSample.ConsoleModules
         /// </remarks>
         public override void OnPicked()
         {
-            var host = Host;
+            var options = Host.HostServices.GetService<DynamicDataOptions>();
+
+            if (options != null)
+            {
+                Children.Clear();
+                Children.Add(new ConfigureDataServiceInteractiveConsoleItem(options));
+                Children.Add(new MigrationServiceInteractiveConsoleItem(options));
+            }
+
             base.OnPicked();
         }
     }

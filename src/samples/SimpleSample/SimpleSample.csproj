@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -6,6 +6,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\FluiTec.AppFx.Console\FluiTec.AppFx.Console.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluiTec.AppFx.Data.Dynamic" Version="1.0.66"></PackageReference>
+    <PackageReference Include="FluiTec.AppFx.Data.Sql" Version="1.0.66"></PackageReference>
+    <PackageReference Include="FluiTec.AppFx.Options" Version="1.1.47"></PackageReference>
   </ItemGroup>
 
 </Project>

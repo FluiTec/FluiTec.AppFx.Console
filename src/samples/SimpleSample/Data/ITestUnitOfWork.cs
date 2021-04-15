@@ -1,4 +1,5 @@
-﻿using SimpleSample.Data.Repositories;
+﻿using FluiTec.AppFx.Data.UnitsOfWork;
+using SimpleSample.Data.Repositories;
 
 namespace SimpleSample.Data
 {

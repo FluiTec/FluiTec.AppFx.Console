@@ -61,7 +61,7 @@ namespace FluiTec.AppFx.Console.Items
         /// <param name="name">         The name. </param>
         /// <param name="description">  The description. </param>
         /// <param name="parent">       The parent. </param>
-        protected BaseInteractiveConsoleItem(string name, string description, IInteractiveConsoleItem parent = null)
+        protected BaseInteractiveConsoleItem(string name, string description, IInteractiveConsoleItem parent = null) : this()
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentNullException(nameof(name));
@@ -89,8 +89,10 @@ namespace FluiTec.AppFx.Console.Items
         /// <param name="e">        Notify collection changed event information. </param>
         protected virtual void ObservableChildrenOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            SetParent(e.NewItems.Cast<IInteractiveConsoleItem>(), this);
-            SetParent(e.OldItems.Cast<IInteractiveConsoleItem>(), null);
+            if (e.NewItems != null)
+                SetParent(e.NewItems.Cast<IInteractiveConsoleItem>(), this);
+            if (e.OldItems != null)
+                SetParent(e.OldItems.Cast<IInteractiveConsoleItem>(), null);
         }
 
         /// <summary>   Sets a parent. </summary>
