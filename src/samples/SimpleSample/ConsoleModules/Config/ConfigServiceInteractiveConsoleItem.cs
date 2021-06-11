@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using FluiTec.AppFx.Console.Items;
 using Microsoft.Extensions.Configuration;
@@ -54,7 +53,7 @@ namespace SimpleSample.ConsoleModules.Config
             var tempRoot = new ConfigurationRoot(root.Providers.Where(p =>
                 p is not EnvironmentVariablesConfigurationProvider).ToList());
 
-            var entries =tempRoot.AsEnumerable().OrderBy(kv => kv.Key).ToList();
+            var entries = tempRoot.AsEnumerable().OrderBy(kv => kv.Key).ToList();
 
             foreach (var entry in entries)
             {
@@ -70,7 +69,7 @@ namespace SimpleSample.ConsoleModules.Config
                     var parentKey = entry.Key.Substring(0, entry.Key.LastIndexOf(':'));
 
                     var parent = Children
-                        .SingleOrDefault(p => ((ConfigOptionServiceInteractiveConsoleItem) p).Key == parentKey) 
+                        .SingleOrDefault(p => ((ConfigOptionServiceInteractiveConsoleItem)p).Key == parentKey)
                         ?? CreateParent(child);
 
                     parent.Children.Add(child);
@@ -85,14 +84,17 @@ namespace SimpleSample.ConsoleModules.Config
         {
             var parentKey = child.Key.Substring(0, child.Key.LastIndexOf(':'));
 
+            var newParent = new ConfigOptionServiceInteractiveConsoleItem(parentKey);
 
+            if (parentKey.Contains(':'))
+            {
+                var parent = Children
+                                 .SingleOrDefault(p => ((ConfigOptionServiceInteractiveConsoleItem) p).Key == parentKey) 
+                             ?? CreateParent(newParent);
+                parent.Children.Add(child);
+            }
 
-            return null;
-        }
-
-        private IInteractiveConsoleItem ParentExists(string key)
-        {
-            if (!key.Contains(':')) return this;
+            return newParent;
         }
     }
 }

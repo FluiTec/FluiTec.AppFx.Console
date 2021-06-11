@@ -55,12 +55,11 @@ namespace FluiTec.AppFx.Console
         /// <summary>   Initializes this  from the given host. </summary>
         /// <exception cref="ArgumentNullException">    Thrown when one or more required arguments are
         ///                                             null. </exception>
-        /// <param name="host"> The host. </param>
+        /// <param name="host">     The host. </param>
         /// <returns>   An InteractiveConsoleHost. </returns>
         public static InteractiveConsoleHost FromHost(IHost host)
         {
             if (host == null) throw new ArgumentNullException(nameof(host));
-
             return new InteractiveConsoleHost(host.Services);
         }
     }
