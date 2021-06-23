@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using FluiTec.AppFx.Console.Presentation;
 using Spectre.Console;
 
 namespace FluiTec.AppFx.Console.ConsoleItems
@@ -10,10 +11,6 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         /// <value> True if show default items, false if not. </value>
         public bool ShowDefaultItems { get; protected set; } = true;
 
-        /// <summary>   Gets or sets the page size. </summary>
-        /// <value> The size of the page. </value>
-        public int PageSize { get; protected set; } = 10;
-
         /// <summary>   Gets the name. </summary>
         /// <value> The name. </value>
         public override string Name { get; protected set; }
@@ -22,34 +19,44 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         /// <value> The items. </value>
         public List<IConsoleItem> Items { get; }
 
+        /// <summary>   Gets the prompt title. </summary>
+        /// <value> The prompt title. </value>
+        public virtual string PromptTitle { get; }
+
+        /// <summary>   Gets the more choices text. </summary>
+        /// <value> The more choices text. </value>
+        public virtual string MoreChoicesText { get; }
+
         /// <summary>   Specialized default constructor for use only by derived class. </summary>
         protected SelectConsoleItem()
         {
             Items = new List<IConsoleItem>();
+            PromptTitle = $"Please select any {Presenter.HighlightText("item")} from the list:";
+            MoreChoicesText = Presenter.DefaultText("(Move up and down to show more items)");
         }
-
-        /// <summary>   Gets the prompt title. </summary>
-        /// <value> The prompt title. </value>
-        public virtual string PromptTitle { get; } = "Please select any [green]item[/] from the list:";
 
         /// <summary>   Displays this.  </summary>
         public override void Display()
         {
-            AnsiConsole.Render(new Rule($"[darkgoldenrod]{Name}[/]").RuleStyle("grey").LeftAligned());
-            AnsiConsole.Prompt(new SelectionPrompt<IConsoleItem>()
+            Presenter.PresentHeader(Name);
+
+            var selected = AnsiConsole.Prompt(new SelectionPrompt<IConsoleItem>()
                 .Title(PromptTitle)
-                .PageSize(PageSize)
-                .MoreChoicesText("[grey](Move up and down to show more items)[/]")
+                .PageSize(Presenter.DefaultPageSize)
+                .MoreChoicesText(MoreChoicesText)
                 .AddChoices(ShowDefaultItems ? Items.Concat(CreateDefaultItems()) : Items)
                 .UseConverter(ListEntryConverter)
-                .HighlightStyle(new Style(Color.Yellow))
+                .HighlightStyle(Presenter.Style.SelectHighlightTextStyle)
             );
+
+            selected.Display();
         }
 
         /// <summary>   Converters the given argument. </summary>
         /// <param name="arg">  The argument. </param>
         /// <returns>   A string. </returns>
-        protected virtual string ListEntryConverter(IConsoleItem arg) => arg?.Name;
+        protected virtual string ListEntryConverter(IConsoleItem arg) => 
+            ConsoleApplicationSettings.Instance.Presenter.DefaultListEntryConverter(arg);
 
         /// <summary>   Enumerates create default items in this collection. </summary>
         /// <returns>

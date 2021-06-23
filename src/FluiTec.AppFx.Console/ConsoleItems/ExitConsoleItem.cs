@@ -1,16 +1,21 @@
 ﻿namespace FluiTec.AppFx.Console.ConsoleItems
 {
     /// <summary>   An exit console item. </summary>
-    public class ExitConsoleItem : IConsoleItem
+    public class ExitConsoleItem : ConsoleItem
     {
         /// <summary>   Gets the name. </summary>
         /// <value> The name. </value>
-        public string Name { get; } = "Quit application";
+        public sealed override string Name { get; protected set; }
+
+        public ExitConsoleItem()
+        {
+            Name = "Quit application";
+        }
 
         /// <summary>   Displays this. </summary>
-        public void Display()
+        public override void Display()
         {
-            // ignore and don't give control back
+            Presenter.PresentHeader(Name);
         }
     }
 }

@@ -15,6 +15,8 @@ namespace FluiTec.AppFx.Console
 
         #endregion
         
+        #region Constructors
+
         /// <summary>   Constructor. </summary>
         /// <exception cref="ArgumentNullException">    Thrown when one or more required arguments are
         ///                                             null. </exception>
@@ -24,6 +26,10 @@ namespace FluiTec.AppFx.Console
             HostServices = hostServices ?? throw new ArgumentNullException(nameof(hostServices));
         }
 
+        #endregion
+
+        #region Methods
+
         /// <summary>   Executes the console-application interactively. </summary>
         /// <param name="appplicationName"> Name of the appplication. </param>
         public void RunInteractive(string appplicationName)
@@ -31,7 +37,7 @@ namespace FluiTec.AppFx.Console
             var consoleApplication = new ConsoleApplication(appplicationName);
             consoleApplication.Display();
         }
-
+        
         /// <summary>   Initializes this  from the given host. </summary>
         /// <exception cref="ArgumentNullException">    Thrown when one or more required arguments are
         ///                                             null. </exception>
@@ -42,5 +48,7 @@ namespace FluiTec.AppFx.Console
             if (host == null) throw new ArgumentNullException(nameof(host));
             return new InteractiveConsoleHost(host.Services);
         }
+
+        #endregion
     }
 }
