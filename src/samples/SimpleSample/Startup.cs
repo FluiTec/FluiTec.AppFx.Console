@@ -1,5 +1,4 @@
 using System;
-using FluiTec.AppFx.Console.Items;
 using FluiTec.AppFx.Data.Dapper.Mssql;
 using FluiTec.AppFx.Data.Dapper.Mysql;
 using FluiTec.AppFx.Data.Dapper.Pgsql;
@@ -13,8 +12,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SimpleSample.ConsoleModules.Config;
-using SimpleSample.ConsoleModules.Data;
 using SimpleSample.Data;
 using SimpleSample.Data.LiteDb;
 using SimpleSample.Data.Mssql;
@@ -106,8 +103,6 @@ namespace SimpleSample
         private void ConfigureCli(IServiceCollection services)
         {
             services.AddSingleton(Configuration);
-            services.AddSingleton<IInteractiveConsoleItem>(new DataServiceInteractiveConsoleItem());
-            services.AddSingleton<IInteractiveConsoleItem>(new ConfigServiceInteractiveConsoleItem());
         }
 
         #endregion
