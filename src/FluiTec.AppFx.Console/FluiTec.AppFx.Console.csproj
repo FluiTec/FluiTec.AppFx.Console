@@ -18,4 +18,8 @@
     <PackageReference Include="FluiTec.AppFx.Options" Version="1.1.47"></PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
 </Project>
