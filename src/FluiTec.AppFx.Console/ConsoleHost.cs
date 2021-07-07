@@ -35,7 +35,7 @@ namespace FluiTec.AppFx.Console
         /// <param name="args">             Console arguments. </param>
         public void Run(string applicationName, string[] args)
         {
-            var consoleApplication = new ConsoleApplication(applicationName, args);
+            var consoleApplication = new ConsoleApplication(applicationName, HostServices,args);
             consoleApplication.Run();
         }
 
@@ -44,7 +44,7 @@ namespace FluiTec.AppFx.Console
         /// <param name="args">            Console arguments</param>
         public void RunInteractive(string applicationName, string[] args)
         {
-            var consoleApplication = new ConsoleApplication(applicationName, args);
+            var consoleApplication = new ConsoleApplication(applicationName, HostServices, args);
             consoleApplication.RunInteractive();
         }
 

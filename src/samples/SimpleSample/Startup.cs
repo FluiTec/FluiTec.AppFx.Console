@@ -1,9 +1,11 @@
 using System;
+using FluiTec.AppFx.Console.ConsoleItems;
 using FluiTec.AppFx.Data.Dapper.Mssql;
 using FluiTec.AppFx.Data.Dapper.Mysql;
 using FluiTec.AppFx.Data.Dapper.Pgsql;
 using FluiTec.AppFx.Data.Dynamic.Configuration;
 using FluiTec.AppFx.Data.LiteDb;
+using FluiTec.AppFx.Options.Console;
 using FluiTec.AppFx.Options.Managers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -67,7 +69,7 @@ namespace SimpleSample
         /// <param name="services"> The services. </param>
         private void ConfigureOptions(IServiceCollection services)
         {
-
+            
         }
 
         /// <summary>   Configure ASP net core. </summary>
@@ -102,7 +104,13 @@ namespace SimpleSample
         /// <param name="services"> The services. </param>
         private void ConfigureCli(IServiceCollection services)
         {
+            // basic requirements
+            services.AddSingleton(services);
             services.AddSingleton(Configuration);
+            services.AddSingleton(ConfigurationManager);
+
+            // modules
+            services.AddSingleton<ModuleConsoleItem, OptionsConsoleModule>();
         }
 
         #endregion

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
 
 namespace FluiTec.AppFx.Console.ConsoleItems
@@ -11,6 +12,10 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         /// <value> The name. </value>
         public override string Name { get; protected set; }
 
+        /// <summary>   Gets the host services. </summary>
+        /// <value> The host services. </value>
+        public IServiceProvider HostServices { get; }
+
         /// <summary>   Gets the console arguments. </summary>
         /// <value> The console arguments. </value>
         public string[] ConsoleArgs { get; }
@@ -18,13 +23,17 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         /// <summary>   Constructor. </summary>
         /// <exception cref="ArgumentNullException">    Thrown when one or more required arguments are
         ///                                             null. </exception>
-        /// <param name="name"> The name. </param>
-        /// <param name="consoleArgs"></param>
-        public ConsoleApplication(string name, string[] consoleArgs)
+        /// <param name="name">         The name. </param>
+        /// <param name="hostServices"> The host services. </param>
+        /// <param name="consoleArgs">  . </param>
+        public ConsoleApplication(string name, IServiceProvider hostServices, string[] consoleArgs)
         {
             // ReSharper disable once VirtualMemberCallInConstructor
             Name = name ?? throw new ArgumentNullException(nameof(name));
+            HostServices = hostServices;
             ConsoleArgs = consoleArgs;
+
+            Items.AddRange(hostServices.GetServices<ModuleConsoleItem>());
         }
 
         /// <summary>   Executes the console application.  </summary>
