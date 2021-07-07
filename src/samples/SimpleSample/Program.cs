@@ -16,7 +16,7 @@ namespace SimpleSample
 
             if (!ConsoleHelper.RunConsole(
                 (a) => { },
-                (a) => InteractiveConsoleHost.FromHost(host).RunInteractive(typeof(Program).Assembly.GetName().Name), args))
+                (a) => ConsoleHost.FromHost(host).RunInteractive(typeof(Program).Assembly.GetName().Name, a), args))
             {
                 host.Run();
             }

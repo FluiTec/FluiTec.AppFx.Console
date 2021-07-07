@@ -4,8 +4,8 @@ using Microsoft.Extensions.Hosting;
 
 namespace FluiTec.AppFx.Console
 {
-    /// <summary>   An interactive console host. </summary>
-    public class InteractiveConsoleHost
+    /// <summary>   An console host. </summary>
+    public class ConsoleHost
     {
         #region Properties
 
@@ -21,7 +21,7 @@ namespace FluiTec.AppFx.Console
         /// <exception cref="ArgumentNullException">    Thrown when one or more required arguments are
         ///                                             null. </exception>
         /// <param name="hostServices"> The host services. </param>
-        public InteractiveConsoleHost(IServiceProvider hostServices)
+        public ConsoleHost(IServiceProvider hostServices)
         {
             HostServices = hostServices ?? throw new ArgumentNullException(nameof(hostServices));
         }
@@ -30,23 +30,35 @@ namespace FluiTec.AppFx.Console
 
         #region Methods
 
-        /// <summary>   Executes the console-application interactively. </summary>
-        /// <param name="appplicationName"> Name of the appplication. </param>
-        public void RunInteractive(string appplicationName)
+        /// <summary>   Executes the console-application. </summary>
+        /// <param name="applicationName">  Name of the application. </param>
+        /// <param name="args">             Console arguments. </param>
+        public void Run(string applicationName, string[] args)
         {
-            var consoleApplication = new ConsoleApplication(appplicationName);
-            consoleApplication.Display();
+            var consoleApplication = new ConsoleApplication(applicationName, args);
+            consoleApplication.Run();
         }
+
+        /// <summary>   Executes the console-application interactively. </summary>
+        /// <param name="applicationName"> Name of the application. </param>
+        /// <param name="args">            Console arguments</param>
+        public void RunInteractive(string applicationName, string[] args)
+        {
+            var consoleApplication = new ConsoleApplication(applicationName, args);
+            consoleApplication.RunInteractive();
+        }
+
+
         
         /// <summary>   Initializes this  from the given host. </summary>
         /// <exception cref="ArgumentNullException">    Thrown when one or more required arguments are
         ///                                             null. </exception>
         /// <param name="host">     The host. </param>
         /// <returns>   An InteractiveConsoleHost. </returns>
-        public static InteractiveConsoleHost FromHost(IHost host)
+        public static ConsoleHost FromHost(IHost host)
         {
             if (host == null) throw new ArgumentNullException(nameof(host));
-            return new InteractiveConsoleHost(host.Services);
+            return new ConsoleHost(host.Services);
         }
 
         #endregion

@@ -10,10 +10,6 @@
     <PackageReference Include="Spectre.Console" Version="0.40.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(Configuration)'=='Debug'">
-    <ProjectReference Include="$(SolutionDir)\..\fluitec.appfx.options\src\FluiTec.AppFx.Options\FluiTec.AppFx.Options.csproj" />
-  </ItemGroup>
-
   <ItemGroup Condition="'$(Configuration)'=='Release'">
     <PackageReference Include="FluiTec.AppFx.Options" Version="1.1.47"></PackageReference>
   </ItemGroup>
