@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FluiTec.AppFx.Console.Presentation;
 using Spectre.Console;
@@ -35,6 +36,31 @@ namespace FluiTec.AppFx.Console.ConsoleItems
             MoreChoicesText = Presenter.DefaultText("(Move up and down to show more items)");
         }
 
+        protected SelectConsoleItem(string name) : this()
+        {
+            // ReSharper disable once VirtualMemberCallInConstructor
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+        }
+
+        /// <summary>   Specialized default constructor for use only by derived class. </summary>
+        /// <param name="parent">   The parent. </param>
+        protected SelectConsoleItem(IConsoleItem parent) : this()
+        {
+            // ReSharper disable once VirtualMemberCallInConstructor
+            Parent = parent ?? throw new ArgumentNullException(nameof(parent));
+        }
+
+        /// <summary>   Specialized default constructor for use only by derived class. </summary>
+        /// <param name="name">     The name. </param>
+        /// <param name="parent">   The parent. </param>
+        protected SelectConsoleItem(string name, IConsoleItem parent)
+        {
+            // ReSharper disable VirtualMemberCallInConstructor
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+            Parent = parent ?? throw new ArgumentNullException(nameof(parent));
+            // ReSharper enable VirtualMemberCallInConstructor
+        }
+
         /// <summary>   Displays this.  </summary>
         public override void Display()
         {
@@ -65,7 +91,7 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         /// </returns>
         protected virtual IEnumerable<IConsoleItem> CreateDefaultItems()
         {
-            return new IConsoleItem[] {new BackConsoleItem(this), new ExitConsoleItem()};
+            return new IConsoleItem[] {new BackConsoleItem(Parent ?? this), new ExitConsoleItem()};
         }
     }
 }

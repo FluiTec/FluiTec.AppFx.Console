@@ -9,9 +9,9 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         /// <value> The name. </value>
         public string Name { get; } = "Back to parent item";
         
-        /// <summary>   Gets the parent. </summary>
+        /// <summary>   Gets or sets the parent. </summary>
         /// <value> The parent. </value>
-        public IConsoleItem Parent { get; }
+        public IConsoleItem Parent { get; set; }
 
         /// <summary>   Constructor. </summary>
         /// <param name="parent">   The parent. </param>

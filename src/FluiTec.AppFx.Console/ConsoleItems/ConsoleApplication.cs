@@ -30,8 +30,8 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         {
             // ReSharper disable once VirtualMemberCallInConstructor
             Name = name ?? throw new ArgumentNullException(nameof(name));
-            HostServices = hostServices;
-            ConsoleArgs = consoleArgs;
+            HostServices = hostServices ?? throw new ArgumentNullException(nameof(hostServices));
+            ConsoleArgs = consoleArgs ?? throw new ArgumentNullException(nameof(consoleArgs));
 
             Items.AddRange(hostServices.GetServices<ModuleConsoleItem>());
         }
