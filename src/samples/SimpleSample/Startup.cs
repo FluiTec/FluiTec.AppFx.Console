@@ -5,7 +5,6 @@ using FluiTec.AppFx.Data.Dapper.Mysql;
 using FluiTec.AppFx.Data.Dapper.Pgsql;
 using FluiTec.AppFx.Data.Dynamic.Configuration;
 using FluiTec.AppFx.Data.LiteDb;
-using FluiTec.AppFx.Options.Console;
 using FluiTec.AppFx.Options.Managers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -110,7 +109,7 @@ namespace SimpleSample
             services.AddSingleton(ConfigurationManager);
 
             // modules
-            services.AddSingleton<ModuleConsoleItem, OptionsConsoleModule>();
+            // services.AddSingleton<ModuleConsoleItem, OptionsConsoleModule>();
         }
 
         #endregion
