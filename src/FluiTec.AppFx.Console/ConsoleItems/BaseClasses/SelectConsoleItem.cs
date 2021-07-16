@@ -12,9 +12,9 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         /// <value> True if show default items, false if not. </value>
         public bool ShowDefaultItems { get; protected set; } = true;
 
-        /// <summary>   Gets the name. </summary>
-        /// <value> The name. </value>
-        public override string Name { get; protected set; }
+        /// <summary>   Gets the name of the display. </summary>
+        /// <value> The name of the display. </value>
+        public override string DisplayName => Items.Any() ? $"{Name} ({Items.Count} items)" : Name;
 
         /// <summary>   Gets the items. </summary>
         /// <value> The items. </value>
@@ -36,34 +36,23 @@ namespace FluiTec.AppFx.Console.ConsoleItems
             MoreChoicesText = Presenter.DefaultText("(Move up and down to show more items)");
         }
 
+        /// <summary>   Specialized default constructor for use only by derived class. </summary>
+        /// <exception cref="ArgumentNullException">    Thrown when one or more required arguments are
+        ///                                             null. </exception>
+        /// <param name="name"> The name. </param>
         protected SelectConsoleItem(string name) : this()
         {
             // ReSharper disable once VirtualMemberCallInConstructor
             Name = name ?? throw new ArgumentNullException(nameof(name));
         }
 
-        /// <summary>   Specialized default constructor for use only by derived class. </summary>
+        /// <summary>   Displays this. </summary>
         /// <param name="parent">   The parent. </param>
-        protected SelectConsoleItem(IConsoleItem parent) : this()
+        public override void Display(IConsoleItem parent)
         {
-            // ReSharper disable once VirtualMemberCallInConstructor
-            Parent = parent ?? throw new ArgumentNullException(nameof(parent));
-        }
-
-        /// <summary>   Specialized default constructor for use only by derived class. </summary>
-        /// <param name="name">     The name. </param>
-        /// <param name="parent">   The parent. </param>
-        protected SelectConsoleItem(string name, IConsoleItem parent)
-        {
-            // ReSharper disable VirtualMemberCallInConstructor
-            Name = name ?? throw new ArgumentNullException(nameof(name));
-            Parent = parent ?? throw new ArgumentNullException(nameof(parent));
-            // ReSharper enable VirtualMemberCallInConstructor
-        }
-
-        /// <summary>   Displays this.  </summary>
-        public override void Display()
-        {
+            base.Display(parent);
+            
+            if (!Items.Any()) return;
             Presenter.PresentHeader(Name);
 
             var selected = AnsiConsole.Prompt(new SelectionPrompt<IConsoleItem>()
@@ -75,14 +64,16 @@ namespace FluiTec.AppFx.Console.ConsoleItems
                 .HighlightStyle(Presenter.Style.SelectHighlightTextStyle)
             );
 
-            selected.Display();
+            selected.Display(this);
         }
 
         /// <summary>   Converters the given argument. </summary>
         /// <param name="arg">  The argument. </param>
         /// <returns>   A string. </returns>
-        protected virtual string ListEntryConverter(IConsoleItem arg) => 
-            ConsoleApplicationSettings.Instance.Presenter.DefaultListEntryConverter(arg);
+        protected virtual string ListEntryConverter(IConsoleItem arg)
+        {
+            return ConsoleApplicationSettings.Instance.Presenter.DefaultListEntryConverter(arg);
+        }
 
         /// <summary>   Enumerates create default items in this collection. </summary>
         /// <returns>
@@ -91,7 +82,7 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         /// </returns>
         protected virtual IEnumerable<IConsoleItem> CreateDefaultItems()
         {
-            return new IConsoleItem[] {new BackConsoleItem(Parent ?? this), new ExitConsoleItem()};
+            return new IConsoleItem[] {new BackConsoleItem(), new ExitConsoleItem()};
         }
     }
 }

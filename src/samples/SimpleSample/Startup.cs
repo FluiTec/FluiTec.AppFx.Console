@@ -1,6 +1,5 @@
 using System;
 using FluiTec.AppFx.Console.ConsoleItems;
-using FluiTec.AppFx.Console.Presentation;
 using FluiTec.AppFx.Data.Dapper.Mssql;
 using FluiTec.AppFx.Data.Dapper.Mysql;
 using FluiTec.AppFx.Data.Dapper.Pgsql;
@@ -109,6 +108,8 @@ namespace SimpleSample
             services.AddSingleton(Configuration);
             services.AddSingleton(ConfigurationManager);
 
+            // application
+            
             // modules
             services.AddSingleton<ModuleConsoleItem, OptionsConsoleModule>();
         }

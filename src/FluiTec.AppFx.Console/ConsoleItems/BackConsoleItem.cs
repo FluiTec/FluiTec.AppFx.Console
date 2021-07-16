@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FluiTec.AppFx.Console.ConsoleItems
+﻿namespace FluiTec.AppFx.Console.ConsoleItems
 {
     /// <summary>   A back console item. </summary>
     public class BackConsoleItem : IConsoleItem
@@ -8,22 +6,21 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         /// <summary>   Gets the name. </summary>
         /// <value> The name. </value>
         public string Name { get; } = "Back to parent item";
-        
+
+        /// <summary>   Gets the name of the display. </summary>
+        /// <value> The name of the display. </value>
+        public string DisplayName => Name;
+
         /// <summary>   Gets or sets the parent. </summary>
         /// <value> The parent. </value>
-        public IConsoleItem Parent { get; set; }
-
-        /// <summary>   Constructor. </summary>
-        /// <param name="parent">   The parent. </param>
-        public BackConsoleItem(IConsoleItem parent)
-        {
-            Parent = parent ?? throw new ArgumentNullException(nameof(parent));
-        }
+        public IConsoleItem Parent { get; private set; }
 
         /// <summary>   Displays this. </summary>
-        public void Display()
+        /// <param name="parent">   The parent. </param>
+        public void Display(IConsoleItem parent)
         {
-            Parent.Display();
+            Parent = parent.Parent;
+            Parent.Display(null);
         }
     }
 }

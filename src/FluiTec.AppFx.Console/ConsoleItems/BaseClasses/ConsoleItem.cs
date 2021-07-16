@@ -6,10 +6,6 @@ namespace FluiTec.AppFx.Console.ConsoleItems
     /// <summary>   A console item. </summary>
     public abstract class ConsoleItem : IConsoleItem
     {
-        /// <summary>   Gets or sets the parent. </summary>
-        /// <value> The parent. </value>
-        public IConsoleItem Parent { get; set; }
-
         /// <summary>   Gets the presenter. </summary>
         /// <value> The presenter. </value>
         protected IConsolePresenter Presenter { get; } = ConsoleApplicationSettings.Instance.Presenter;
@@ -17,6 +13,14 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         /// <summary>   Gets or sets the name. </summary>
         /// <value> The name. </value>
         public virtual string Name { get; protected set; }
+
+        /// <summary>   Gets the name of the display. </summary>
+        /// <value> The name of the display. </value>
+        public virtual string DisplayName => Name;
+
+        /// <summary>   Gets the parent. </summary>
+        /// <value> The parent. </value>
+        public IConsoleItem Parent { get; protected set; }
 
         /// <summary>   Specialized default constructor for use only by derived class. </summary>
         protected ConsoleItem()
@@ -33,28 +37,16 @@ namespace FluiTec.AppFx.Console.ConsoleItems
             Name = name ?? throw new ArgumentNullException(nameof(name));
         }
 
-        /// <summary>   Specialized default constructor for use only by derived class. </summary>
-        /// <param name="parent">   The parent. </param>
-        protected ConsoleItem(IConsoleItem parent)
-        {
-            // ReSharper disable once VirtualMemberCallInConstructor
-            Parent = parent ?? throw new ArgumentNullException(nameof(parent));
-        }
-
-        /// <summary>   Specialized default constructor for use only by derived class. </summary>
-        /// <exception cref="ArgumentNullException">    Thrown when one or more required arguments are
-        ///                                             null. </exception>
-        /// <param name="name">     The name. </param>
-        /// <param name="parent">   The parent. </param>
-        protected ConsoleItem(string name, IConsoleItem parent)
-        {
-            // ReSharper disable VirtualMemberCallInConstructor
-            Name = name ?? throw new ArgumentNullException(nameof(name));
-            Parent = parent ?? throw new ArgumentNullException(nameof(parent));
-            // ReSharper enable VirtualMemberCallInConstructor
-        }
-
         /// <summary>   Displays this. </summary>
-        public abstract void Display();
+        /// <param name="parent">   The parent. </param>
+        public virtual void Display(IConsoleItem parent)
+        {
+            if (parent != null)
+                Parent = parent;
+        }
+
+        /// <summary>   Returns a string that represents the current object. </summary>
+        /// <returns>   A string that represents the current object. </returns>
+        public override string ToString() => Name;
     }
 }

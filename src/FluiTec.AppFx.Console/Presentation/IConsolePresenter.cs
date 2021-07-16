@@ -1,10 +1,15 @@
-﻿using FluiTec.AppFx.Console.ConsoleItems;
+﻿using System.Collections.Generic;
+using FluiTec.AppFx.Console.ConsoleItems;
 
 namespace FluiTec.AppFx.Console.Presentation
 {
     /// <summary>   Interface for console presenter. </summary>
     public interface IConsolePresenter
     {
+        /// <summary>   Gets the activated items. </summary>
+        /// <value> The activated items. </value>
+        List<IConsoleItem> ActivatedItems { get; }
+
         ConsoleStyle Style { get; }
 
         /// <summary>   Gets the default page size. </summary>

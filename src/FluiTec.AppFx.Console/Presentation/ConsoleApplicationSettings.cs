@@ -17,7 +17,7 @@
 
         /// <summary>   Gets the instance. </summary>
         /// <value> The instance. </value>
-        public static ConsoleApplicationSettings Instance => Nested.instance;
+        public static ConsoleApplicationSettings Instance => Nested.InternalInstance;
 
         // ReSharper disable once ClassNeverInstantiated.Local
         private class Nested
@@ -28,7 +28,7 @@
             {
             }
 
-            internal static readonly ConsoleApplicationSettings instance = new ConsoleApplicationSettings();
+            internal static readonly ConsoleApplicationSettings InternalInstance = new ConsoleApplicationSettings();
         }
 
         #endregion

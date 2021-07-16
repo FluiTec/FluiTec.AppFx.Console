@@ -7,11 +7,15 @@
         /// <value> The name. </value>
         string Name { get; }
 
-        /// <summary>   Gets or sets the parent. </summary>
+        /// <summary>   Gets the name of the display. </summary>
+        /// <value> The name of the display. </value>
+        string DisplayName { get; }
+
+        /// <summary>   Gets the parent. </summary>
         /// <value> The parent. </value>
-        IConsoleItem Parent { get; set; }
+        IConsoleItem Parent { get; }
 
         /// <summary>   Displays this.  </summary>
-        public void Display();
+        public void Display(IConsoleItem parent);
     }
 }

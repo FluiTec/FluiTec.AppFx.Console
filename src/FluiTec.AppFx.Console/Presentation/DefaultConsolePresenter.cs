@@ -1,4 +1,5 @@
-﻿using FluiTec.AppFx.Console.ConsoleItems;
+﻿using System.Collections.Generic;
+using FluiTec.AppFx.Console.ConsoleItems;
 using Spectre.Console;
 
 namespace FluiTec.AppFx.Console.Presentation
@@ -6,6 +7,10 @@ namespace FluiTec.AppFx.Console.Presentation
     /// <summary>   A presenter for default consoles information. </summary>
     public class DefaultConsolePresenter : IConsolePresenter
     {
+        /// <summary>   Gets the activated items. </summary>
+        /// <value> The activated items. </value>
+        public List<IConsoleItem> ActivatedItems { get; }
+
         public ConsoleStyle Style { get; }
 
         /// <summary>   Gets the default page size. </summary>
@@ -20,6 +25,7 @@ namespace FluiTec.AppFx.Console.Presentation
                 HighlightTextStyle = "gold3",
                 SelectHighlightTextStyle = "darkgoldenrod"
             };
+            ActivatedItems = new List<IConsoleItem>();
         }
 
         public string DefaultText(string text) => $"[{Style.DefaultTextStyle.Foreground.ToMarkup()}][/]";
@@ -32,7 +38,7 @@ namespace FluiTec.AppFx.Console.Presentation
         /// <summary>   Default list entry converter. </summary>
         /// <param name="arg">  The argument. </param>
         /// <returns>   A string. </returns>
-        public string DefaultListEntryConverter(IConsoleItem arg) => arg.Name;
+        public string DefaultListEntryConverter(IConsoleItem arg) => arg.DisplayName;
 
         /// <summary>   Present header. </summary>
         /// <param name="header">   The header. </param>

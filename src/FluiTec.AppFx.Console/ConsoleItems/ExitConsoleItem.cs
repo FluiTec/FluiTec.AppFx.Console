@@ -13,7 +13,7 @@
         }
 
         /// <summary>   Displays this. </summary>
-        public override void Display()
+        public override void Display(IConsoleItem parent)
         {
             Presenter.PresentHeader(Name);
         }

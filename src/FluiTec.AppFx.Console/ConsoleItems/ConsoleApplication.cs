@@ -34,6 +34,8 @@ namespace FluiTec.AppFx.Console.ConsoleItems
             ConsoleArgs = consoleArgs ?? throw new ArgumentNullException(nameof(consoleArgs));
 
             Items.AddRange(hostServices.GetServices<ModuleConsoleItem>());
+            foreach (var item in Items)
+                ((ModuleConsoleItem) item).Application = this;
         }
 
         /// <summary>   Executes the console application.  </summary>
@@ -45,14 +47,14 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         /// <summary>   Executes the console application interactively. </summary>
         public void RunInteractive()
         {
-            Display();
+            Display(this);
         }
 
         /// <summary>   Displays this. </summary>
-        public override void Display()
+        public override void Display(IConsoleItem parent)
         {
             AnsiConsole.Clear();
-            base.Display();
+            base.Display(parent);
         }
 
         /// <summary>   Enumerates create default items in this collection. </summary>
