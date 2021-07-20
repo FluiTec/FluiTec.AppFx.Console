@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Linq;
 using FluiTec.AppFx.Console.ConsoleItems;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace FluiTec.AppFx.Console
@@ -59,6 +63,28 @@ namespace FluiTec.AppFx.Console
         {
             if (host == null) throw new ArgumentNullException(nameof(host));
             return new ConsoleHost(host.Services);
+        }
+
+        /// <summary>   Configures. </summary>
+        /// <param name="config">   The configuration. </param>
+        /// <param name="services"> The services. </param>
+        public static void Configure(IConfigurationRoot config, IServiceCollection services)
+        {
+            services.AddSingleton(services);
+            services.AddSingleton(config);
+            
+            var provider = config.Providers
+                .Where(p => p is JsonConfigurationProvider configurationProvider && configurationProvider.Source.Path == "appsettings.conf.json")
+                .Cast<JsonConfigurationProvider>()
+                .Single();
+            services.AddSingleton<IConfigurationProvider>(provider);
+        }
+
+        /// <summary>   Configure module. </summary>
+        /// <param name="services">     The services. </param>
+        public static void ConfigureModule<TModuleType>(IServiceCollection services) where TModuleType : ModuleConsoleItem
+        {
+            services.AddSingleton(typeof(ModuleConsoleItem), typeof(TModuleType));
         }
 
         #endregion

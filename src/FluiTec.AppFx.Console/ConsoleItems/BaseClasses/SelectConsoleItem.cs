@@ -12,9 +12,13 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         /// <value> True if show default items, false if not. </value>
         public bool ShowDefaultItems { get; protected set; } = true;
 
+        /// <summary>   Gets the items string. </summary>
+        /// <value> The items string. </value>
+        private string ItemsString => Items.Count > 1 ? "items" : "item";
+
         /// <summary>   Gets the name of the display. </summary>
         /// <value> The name of the display. </value>
-        public override string DisplayName => Items.Any() ? $"{Name} ({Items.Count} items)" : Name;
+        public override string DisplayName => Items.Any() ? $"{Name} ({Items.Count} {ItemsString})" : Name;
 
         /// <summary>   Gets the items. </summary>
         /// <value> The items. </value>

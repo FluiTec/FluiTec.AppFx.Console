@@ -1,5 +1,5 @@
 using System;
-using FluiTec.AppFx.Console.ConsoleItems;
+using FluiTec.AppFx.Console;
 using FluiTec.AppFx.Data.Dapper.Mssql;
 using FluiTec.AppFx.Data.Dapper.Mysql;
 using FluiTec.AppFx.Data.Dapper.Pgsql;
@@ -103,15 +103,8 @@ namespace SimpleSample
         /// <param name="services"> The services. </param>
         private void ConfigureCli(IServiceCollection services)
         {
-            // basic requirements
-            services.AddSingleton(services);
-            services.AddSingleton(Configuration);
-            services.AddSingleton(ConfigurationManager);
-
-            // application
-            
-            // modules
-            services.AddSingleton<ModuleConsoleItem, OptionsConsoleModule>();
+            ConsoleHost.Configure(Configuration, services);
+            ConsoleHost.ConfigureModule<OptionsConsoleModule>(services);
         }
 
         #endregion
