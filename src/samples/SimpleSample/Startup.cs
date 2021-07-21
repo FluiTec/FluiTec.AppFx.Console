@@ -38,8 +38,8 @@ namespace SimpleSample
                 .SetBasePath(environment.ContentRootPath)
                 .AddJsonFile("appsettings.json", false, true)
                 .AddJsonFile("appsettings.secret.json", false, true)
-                .AddSaveableJsonFile("appsettings.local.json", false, true)
-                .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", true);
+                .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", true)
+                .AddSaveableJsonFile("appsettings.local.json", false, true);
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();

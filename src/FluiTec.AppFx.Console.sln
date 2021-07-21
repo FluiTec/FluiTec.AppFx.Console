@@ -15,8 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluiTec.AppFx.Console", "FluiTec.AppFx.Console\FluiTec.AppFx.Console.csproj", "{E78F7E02-9A2B-48B0-9AD5-31454F4E5983}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E3E5E087-A89B-4EC8-A383-687BF169BC8F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{741403EF-AE57-47A5-91DA-DFC4BC9377D5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleSample", "samples\SimpleSample\SimpleSample.csproj", "{1408EB78-8870-48FA-ABF1-E08ADD5A71D1}"
