@@ -26,6 +26,28 @@ namespace SimpleSample
     /// <summary>   A startup. </summary>
     public class Startup
     {
+        #region Constructors
+
+        /// <summary>   Constructor. </summary>
+        /// <param name="environment">  The environment. </param>
+        public Startup(IWebHostEnvironment environment)
+        {
+            Environment = environment;
+
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(environment.ContentRootPath)
+                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile("appsettings.secret.json", false, true)
+                .AddSaveableJsonFile("appsettings.local.json", false, true)
+                .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", true);
+
+            builder.AddEnvironmentVariables();
+            Configuration = builder.Build();
+            ConfigurationManager = new ConsoleReportingConfigurationManager(Configuration);
+        }
+
+        #endregion
+
         #region Properties
 
         /// <summary>	Gets the configuration. </summary>
@@ -42,35 +64,12 @@ namespace SimpleSample
 
         #endregion
 
-        #region Constructors
-
-        /// <summary>   Constructor. </summary>
-        /// <param name="environment">  The environment. </param>
-        public Startup(IWebHostEnvironment environment)
-        {
-            Environment = environment;
-
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(environment.ContentRootPath)
-                .AddJsonFile("appsettings.json", false, true)
-                .AddJsonFile("appsettings.secret.json", false, true)
-                .AddSaveableJsonFile("appsettings.conf.json", false, true)
-                .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", true);
-
-            builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
-            ConfigurationManager = new ConsoleReportingConfigurationManager(Configuration);
-        }
-
-        #endregion
-
         #region Services
 
         /// <summary>   Configure options. </summary>
         /// <param name="services"> The services. </param>
         private void ConfigureOptions(IServiceCollection services)
         {
-            
         }
 
         /// <summary>   Configure ASP net core. </summary>
@@ -106,7 +105,12 @@ namespace SimpleSample
         private void ConfigureCli(IServiceCollection services)
         {
             ConsoleHost.Configure(Configuration, services);
-            ConsoleHost.ConfigureModule(services, provider => new OptionsConsoleModule(provider.GetRequiredService<IConfigurationProvider>()));
+            ConsoleHost.ConfigureModule(services, provider =>
+            {
+                var conf = provider.GetRequiredService<IConfigurationRoot>();
+                var cp = conf.Providers.Single(p => p is SaveableJsonConfigurationProvider);
+                return new OptionsConsoleModule(cp);
+            });
         }
 
         #endregion
@@ -121,25 +125,19 @@ namespace SimpleSample
             ConfigureAspNetCore(services);
             ConfigureCli(services);
         }
-        
+
         /// <summary>   Configures. </summary>
         /// <param name="app">          The application. </param>
         /// <param name="env">          The environment. </param>
         /// <param name="appLifetime">  The application lifetime. </param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime appLifetime)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello World!"); });
             });
         }
 

@@ -11,8 +11,10 @@ namespace FluiTec.AppFx.Console.Configuration
         ///     <see cref="T:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider" /> for
         ///     this source.
         /// </summary>
-        /// <param name="builder">  The
-        ///                         <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder" />. </param>
+        /// <param name="builder">
+        ///     The
+        ///     <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder" />.
+        /// </param>
         /// <returns>
         ///     A <see cref="T:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider" />
         /// </returns>

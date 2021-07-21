@@ -20,21 +20,18 @@ namespace SimpleSample
                     .Run(typeof(Program).Assembly.GetName().Name, a),
                 a => ConsoleHost
                     .FromHost(host)
-                    .RunInteractive(typeof(Program).Assembly.GetName().Name, a), 
+                    .RunInteractive(typeof(Program).Assembly.GetName().Name, a),
                 args))
-            {
                 host.Run();
-            }
         }
 
         /// <summary>   Creates host builder. </summary>
         /// <param name="args"> An array of command-line argument strings. </param>
         /// <returns>   The new host builder. </returns>
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            return Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+        }
     }
 }

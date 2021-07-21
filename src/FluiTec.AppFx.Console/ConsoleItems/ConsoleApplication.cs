@@ -8,21 +8,11 @@ namespace FluiTec.AppFx.Console.ConsoleItems
     /// <summary>   A console application. </summary>
     public class ConsoleApplication : SelectConsoleItem
     {
-        /// <summary>   Gets the name. </summary>
-        /// <value> The name. </value>
-        public override string Name { get; protected set; }
-
-        /// <summary>   Gets the host services. </summary>
-        /// <value> The host services. </value>
-        public IServiceProvider HostServices { get; }
-
-        /// <summary>   Gets the console arguments. </summary>
-        /// <value> The console arguments. </value>
-        public string[] ConsoleArgs { get; }
-
         /// <summary>   Constructor. </summary>
-        /// <exception cref="ArgumentNullException">    Thrown when one or more required arguments are
-        ///                                             null. </exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when one or more required arguments are
+        ///     null.
+        /// </exception>
         /// <param name="name">         The name. </param>
         /// <param name="hostServices"> The host services. </param>
         /// <param name="consoleArgs">  . </param>
@@ -37,6 +27,18 @@ namespace FluiTec.AppFx.Console.ConsoleItems
             foreach (var item in Items)
                 ((ModuleConsoleItem) item).Application = this;
         }
+
+        /// <summary>   Gets the name. </summary>
+        /// <value> The name. </value>
+        public override string Name { get; protected set; }
+
+        /// <summary>   Gets the host services. </summary>
+        /// <value> The host services. </value>
+        public IServiceProvider HostServices { get; }
+
+        /// <summary>   Gets the console arguments. </summary>
+        /// <value> The console arguments. </value>
+        public string[] ConsoleArgs { get; }
 
         /// <summary>   Executes the console application.  </summary>
         public void Run()

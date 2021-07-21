@@ -22,13 +22,13 @@
         // ReSharper disable once ClassNeverInstantiated.Local
         private class Nested
         {
+            internal static readonly ConsoleApplicationSettings InternalInstance = new ConsoleApplicationSettings();
+
             // Explicit static constructor to tell C# compiler
             // not to mark type as beforefieldinit
             static Nested()
             {
             }
-
-            internal static readonly ConsoleApplicationSettings InternalInstance = new ConsoleApplicationSettings();
         }
 
         #endregion

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using Microsoft.Extensions.Configuration.Json;
 using Newtonsoft.Json;
@@ -19,7 +20,7 @@ namespace FluiTec.AppFx.Console.Configuration
         /// <param name="value">    The value to set. </param>
         public override void Set(string key, string value)
         {
-            System.Diagnostics.Debug.WriteLine($"SET {key} = {value}");
+            Debug.WriteLine($"SET {key} = {value}");
             base.Set(key, value);
 
             var fileInfo = Source.FileProvider.GetFileInfo(Source.Path);
@@ -47,7 +48,8 @@ namespace FluiTec.AppFx.Console.Configuration
         /// <param name="keyIndex">     Zero-based index of the key. </param>
         /// <param name="value">        The value to set. </param>
         /// <param name="parentDic">    The parent dic. </param>
-        private static void SetValues(IReadOnlyList<string> keys, int keyIndex, string value, IDictionary<string, object> parentDic)
+        private static void SetValues(IReadOnlyList<string> keys, int keyIndex, string value,
+            IDictionary<string, object> parentDic)
         {
             var key = keys[keyIndex];
 
@@ -56,7 +58,7 @@ namespace FluiTec.AppFx.Console.Configuration
                 IDictionary<string, object> childDict;
                 if (parentDic.TryGetValue(key, out var childObj))
                 {
-                    childDict = (IDictionary<string, object>)childObj;
+                    childDict = (IDictionary<string, object>) childObj;
                 }
                 else
                 {
@@ -65,7 +67,6 @@ namespace FluiTec.AppFx.Console.Configuration
                 }
 
                 SetValues(keys, keyIndex + 1, value, childDict);
-
             }
             else
             {

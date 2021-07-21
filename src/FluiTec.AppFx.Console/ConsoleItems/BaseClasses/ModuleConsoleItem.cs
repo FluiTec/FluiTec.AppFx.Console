@@ -7,6 +7,14 @@ namespace FluiTec.AppFx.Console.ConsoleItems
     {
         private ConsoleApplication _application;
 
+        /// <summary>   Specialized default constructor for use only by derived class. </summary>
+        /// <param name="name">         The name. </param>
+        protected ModuleConsoleItem(string name)
+        {
+            // ReSharper disable once VirtualMemberCallInConstructor
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+        }
+
         /// <summary>   Gets or sets the name. </summary>
         /// <value> The name. </value>
         public override string Name { get; protected set; }
@@ -21,14 +29,6 @@ namespace FluiTec.AppFx.Console.ConsoleItems
                 _application = value;
                 Initialize();
             }
-        }
-
-        /// <summary>   Specialized default constructor for use only by derived class. </summary>
-        /// <param name="name">         The name. </param>
-        protected ModuleConsoleItem(string name)
-        {
-            // ReSharper disable once VirtualMemberCallInConstructor
-            Name = name ?? throw new ArgumentNullException(nameof(name));
         }
 
         /// <summary>   Initializes this.  </summary>

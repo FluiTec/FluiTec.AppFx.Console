@@ -9,6 +9,18 @@ namespace SimpleSample
     /// <summary>   The options console item. </summary>
     public class OptionsConsoleItem : SelectConsoleItem
     {
+        /// <summary>   Constructor. </summary>
+        /// <param name="module">   The module. </param>
+        /// <param name="item">     The item. </param>
+        public OptionsConsoleItem(OptionsConsoleModule module, KeyValuePair<string, string> item) : base(
+            item.Key.Contains(':') ? item.Key[(item.Key.LastIndexOf(':') + 1)..] : item.Key)
+        {
+            Module = module;
+
+            var (key, value) = item;
+            Key = key;
+        }
+
         /// <summary>   Gets the module. </summary>
         /// <value> The module. </value>
         public OptionsConsoleModule Module { get; }
@@ -32,20 +44,10 @@ namespace SimpleSample
                 }
                 else
                 {
-                    AnsiConsole.MarkupLine($"The new value {Presenter.HighlightText("equals")} the current value - no changes saved");
+                    AnsiConsole.MarkupLine(
+                        $"The new value {Presenter.HighlightText("equals")} the current value - no changes saved");
                 }
             }
-        }
-
-        /// <summary>   Constructor. </summary>
-        /// <param name="module">   The module. </param>
-        /// <param name="item">     The item. </param>
-        public OptionsConsoleItem(OptionsConsoleModule module, KeyValuePair<string, string> item) : base(item.Key.Contains(':') ? item.Key[(item.Key.LastIndexOf(':')+1)..] : item.Key)
-        {
-            Module = module;
-
-            var (key, value) = item;
-            Key = key;
         }
 
         /// <summary>   Displays this. </summary>
@@ -57,11 +59,13 @@ namespace SimpleSample
             // if item contains elements - SelectConsoleItem (parent) already did it's thing
             if (Items.Any()) return;
 
-            // if item doesnt contain element - let the user edit the value and after doing so - return control
-            Presenter.PresentHeader($"Edit {{{Name}}} - current value:");
+            // if item doesnt contain element - let the user view/edit the value and after doing so - return control
+            Presenter.PresentHeader($"View/Edit {{{Name}}} - current value:");
             AnsiConsole.WriteLine(Value);
             AnsiConsole.Render(new Rule().RuleStyle(Presenter.Style.DefaultTextStyle).LeftAligned());
-            Value = AnsiConsole.Ask<string>($"Please enter a {Presenter.HighlightText("new value")}:{Environment.NewLine}");
+            if (AnsiConsole.Confirm("Edit value?"))
+                Value = AnsiConsole.Ask<string>(
+                    $"Please enter a {Presenter.HighlightText("new value")}:{Environment.NewLine}");
 
             Parent.Display(null);
         }

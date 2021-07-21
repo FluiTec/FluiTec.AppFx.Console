@@ -25,7 +25,7 @@ namespace FluiTec.AppFx.Console.Presentation
         /// <param name="text"> The text. </param>
         /// <returns>   A string. </returns>
         string HighlightText(string text);
-        
+
         /// <summary>   Default list entry converter. </summary>
         /// <param name="arg">  The argument. </param>
         /// <returns>   A string. </returns>

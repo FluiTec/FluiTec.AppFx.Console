@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Linq;
 using FluiTec.AppFx.Console.ConsoleItems;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -11,24 +9,26 @@ namespace FluiTec.AppFx.Console
     /// <summary>   An console host. </summary>
     public class ConsoleHost
     {
-        #region Properties
-
-        /// <summary>   Gets the host services. </summary>
-        /// <value> The host services. </value>
-        public IServiceProvider HostServices { get; }
-
-        #endregion
-        
         #region Constructors
 
         /// <summary>   Constructor. </summary>
-        /// <exception cref="ArgumentNullException">    Thrown when one or more required arguments are
-        ///                                             null. </exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when one or more required arguments are
+        ///     null.
+        /// </exception>
         /// <param name="hostServices"> The host services. </param>
         public ConsoleHost(IServiceProvider hostServices)
         {
             HostServices = hostServices ?? throw new ArgumentNullException(nameof(hostServices));
         }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>   Gets the host services. </summary>
+        /// <value> The host services. </value>
+        public IServiceProvider HostServices { get; }
 
         #endregion
 
@@ -39,7 +39,7 @@ namespace FluiTec.AppFx.Console
         /// <param name="args">             Console arguments. </param>
         public void Run(string applicationName, string[] args)
         {
-            var consoleApplication = new ConsoleApplication(applicationName, HostServices,args);
+            var consoleApplication = new ConsoleApplication(applicationName, HostServices, args);
             consoleApplication.Run();
         }
 
@@ -51,10 +51,12 @@ namespace FluiTec.AppFx.Console
             var consoleApplication = new ConsoleApplication(applicationName, HostServices, args);
             consoleApplication.RunInteractive();
         }
-        
+
         /// <summary>   Initializes this  from the given host. </summary>
-        /// <exception cref="ArgumentNullException">    Thrown when one or more required arguments are
-        ///                                             null. </exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when one or more required arguments are
+        ///     null.
+        /// </exception>
         /// <param name="host">     The host. </param>
         /// <returns>   An InteractiveConsoleHost. </returns>
         public static ConsoleHost FromHost(IHost host)
@@ -70,13 +72,6 @@ namespace FluiTec.AppFx.Console
         {
             services.AddSingleton(services);
             services.AddSingleton(config);
-            
-            var provider = config.Providers
-                .Where(p => p is JsonConfigurationProvider configurationProvider && configurationProvider.Source.Path == "appsettings.conf.json")
-                .Cast<JsonConfigurationProvider>()
-                .Single();
-
-            services.AddSingleton<IConfigurationProvider>(provider);
         }
 
         /// <summary>   Configure module. </summary>

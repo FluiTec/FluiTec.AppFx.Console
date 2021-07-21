@@ -12,6 +12,13 @@ namespace SimpleSample
     /// <summary>   The options console module. </summary>
     public class OptionsConsoleModule : ModuleConsoleItem
     {
+        /// <summary>   Constructor. </summary>
+        /// <param name="saveEnabledProvider">  The save enabled provider. </param>
+        public OptionsConsoleModule(IConfigurationProvider saveEnabledProvider) : base("Options")
+        {
+            SaveEnabledProvider = saveEnabledProvider;
+        }
+
         /// <summary>   Gets the save enabled provider. </summary>
         /// <value> The save enabled provider. </value>
         public IConfigurationProvider SaveEnabledProvider { get; }
@@ -20,20 +27,13 @@ namespace SimpleSample
         /// <value> The configuration root. </value>
         private IConfigurationRoot ConfigurationRoot { get; set; }
 
-        /// <summary>   Constructor. </summary>
-        /// <param name="saveEnabledProvider">  The save enabled provider. </param>
-        public OptionsConsoleModule(IConfigurationProvider saveEnabledProvider) : base("Options")
-        {
-            SaveEnabledProvider = saveEnabledProvider;
-        }
-
         /// <summary>   Initializes this. </summary>
         protected override void Initialize()
         {
             ConfigurationRoot = Application.HostServices.GetRequiredService<IConfigurationRoot>();
             var providers = ConfigurationRoot.Providers
                 .Where(p => p.GetType() != typeof(EnvironmentVariablesConfigurationProvider));
-            
+
             var configValues = new ConfigurationRoot(providers.ToList()).AsEnumerable().OrderBy(v => v.Key);
             foreach (var val in configValues)
             {
@@ -75,10 +75,11 @@ namespace SimpleSample
         {
             if (Application.HostServices.GetRequiredService(typeof(IServiceCollection)) is not IServiceCollection
                 services) return Enumerable.Empty<Type>();
-            
+
             return services
                 .Select(s => s.ServiceType)
-                .Where(s => s.IsGenericType && typeof(IConfigureOptions<>).IsAssignableFrom(s.GetGenericTypeDefinition()))
+                .Where(s => s.IsGenericType &&
+                            typeof(IConfigureOptions<>).IsAssignableFrom(s.GetGenericTypeDefinition()))
                 .Select(s => s.GenericTypeArguments.Single())
                 .ToList();
         }
@@ -86,7 +87,10 @@ namespace SimpleSample
         /// <summary>   Gets setting value. </summary>
         /// <param name="key">  The key. </param>
         /// <returns>   The setting value. </returns>
-        public string GetSettingValue(string key) => ConfigurationRoot[key];
+        public string GetSettingValue(string key)
+        {
+            return ConfigurationRoot[key];
+        }
 
         /// <summary>   Edit setting. </summary>
         /// <param name="key">      The key. </param>

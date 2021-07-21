@@ -37,7 +37,7 @@ namespace FluiTec.AppFx.Console.Helpers
         /// <returns>   True if it succeeds, false if it fails. </returns>
         public static bool RunConsole(Action<string[]> run, Action<string[]> runInteractive, string[] args)
         {
-            var required = ConsoleRequired(out bool interactive, args);
+            var required = ConsoleRequired(out var interactive, args);
             if (!required) return false;
 
             if (interactive)

@@ -8,6 +8,26 @@ namespace FluiTec.AppFx.Console.ConsoleItems
 {
     public abstract class SelectConsoleItem : ConsoleItem
     {
+        /// <summary>   Specialized default constructor for use only by derived class. </summary>
+        protected SelectConsoleItem()
+        {
+            Items = new List<IConsoleItem>();
+            PromptTitle = $"Please select any {Presenter.HighlightText("item")} from the list:";
+            MoreChoicesText = Presenter.DefaultText("(Move up and down to show more items)");
+        }
+
+        /// <summary>   Specialized default constructor for use only by derived class. </summary>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when one or more required arguments are
+        ///     null.
+        /// </exception>
+        /// <param name="name"> The name. </param>
+        protected SelectConsoleItem(string name) : this()
+        {
+            // ReSharper disable once VirtualMemberCallInConstructor
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+        }
+
         /// <summary>   Gets or sets a value indicating whether the default items is shown. </summary>
         /// <value> True if show default items, false if not. </value>
         public bool ShowDefaultItems { get; protected set; } = true;
@@ -32,30 +52,12 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         /// <value> The more choices text. </value>
         public virtual string MoreChoicesText { get; }
 
-        /// <summary>   Specialized default constructor for use only by derived class. </summary>
-        protected SelectConsoleItem()
-        {
-            Items = new List<IConsoleItem>();
-            PromptTitle = $"Please select any {Presenter.HighlightText("item")} from the list:";
-            MoreChoicesText = Presenter.DefaultText("(Move up and down to show more items)");
-        }
-
-        /// <summary>   Specialized default constructor for use only by derived class. </summary>
-        /// <exception cref="ArgumentNullException">    Thrown when one or more required arguments are
-        ///                                             null. </exception>
-        /// <param name="name"> The name. </param>
-        protected SelectConsoleItem(string name) : this()
-        {
-            // ReSharper disable once VirtualMemberCallInConstructor
-            Name = name ?? throw new ArgumentNullException(nameof(name));
-        }
-
         /// <summary>   Displays this. </summary>
         /// <param name="parent">   The parent. </param>
         public override void Display(IConsoleItem parent)
         {
             base.Display(parent);
-            
+
             if (!Items.Any()) return;
             Presenter.PresentHeader(Name);
 
