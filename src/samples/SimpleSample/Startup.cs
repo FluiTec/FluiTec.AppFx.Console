@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using FluiTec.AppFx.Console;
+using FluiTec.AppFx.Console.Configuration;
 using FluiTec.AppFx.Data.Dapper.Mssql;
 using FluiTec.AppFx.Data.Dapper.Mysql;
 using FluiTec.AppFx.Data.Dapper.Pgsql;
@@ -51,8 +53,8 @@ namespace SimpleSample
             var builder = new ConfigurationBuilder()
                 .SetBasePath(environment.ContentRootPath)
                 .AddJsonFile("appsettings.json", false, true)
-                .AddJsonFile("appsettings.conf.json", false, true)
                 .AddJsonFile("appsettings.secret.json", false, true)
+                .AddSaveableJsonFile("appsettings.conf.json", false, true)
                 .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", true);
 
             builder.AddEnvironmentVariables();
@@ -104,7 +106,7 @@ namespace SimpleSample
         private void ConfigureCli(IServiceCollection services)
         {
             ConsoleHost.Configure(Configuration, services);
-            ConsoleHost.ConfigureModule<OptionsConsoleModule>(services);
+            ConsoleHost.ConfigureModule(services, provider => new OptionsConsoleModule(provider.GetRequiredService<IConfigurationProvider>()));
         }
 
         #endregion

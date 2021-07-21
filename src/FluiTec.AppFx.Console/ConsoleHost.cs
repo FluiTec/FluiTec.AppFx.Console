@@ -51,8 +51,6 @@ namespace FluiTec.AppFx.Console
             var consoleApplication = new ConsoleApplication(applicationName, HostServices, args);
             consoleApplication.RunInteractive();
         }
-
-
         
         /// <summary>   Initializes this  from the given host. </summary>
         /// <exception cref="ArgumentNullException">    Thrown when one or more required arguments are
@@ -77,14 +75,18 @@ namespace FluiTec.AppFx.Console
                 .Where(p => p is JsonConfigurationProvider configurationProvider && configurationProvider.Source.Path == "appsettings.conf.json")
                 .Cast<JsonConfigurationProvider>()
                 .Single();
+
             services.AddSingleton<IConfigurationProvider>(provider);
         }
 
         /// <summary>   Configure module. </summary>
-        /// <param name="services">     The services. </param>
-        public static void ConfigureModule<TModuleType>(IServiceCollection services) where TModuleType : ModuleConsoleItem
+        /// <typeparam name="TModuleType">  Type of the module type. </typeparam>
+        /// <param name="services">                 The services. </param>
+        /// <param name="implementationFactory">    The implementation factory. </param>
+        public static void ConfigureModule<TModuleType>(IServiceCollection services,
+            Func<IServiceProvider, TModuleType> implementationFactory)
         {
-            services.AddSingleton(typeof(ModuleConsoleItem), typeof(TModuleType));
+            services.AddSingleton(typeof(ModuleConsoleItem), provider => implementationFactory(provider));
         }
 
         #endregion

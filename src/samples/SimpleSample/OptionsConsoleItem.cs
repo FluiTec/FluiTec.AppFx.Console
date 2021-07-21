@@ -19,16 +19,33 @@ namespace SimpleSample
 
         /// <summary>   Gets or sets the value. </summary>
         /// <value> The value. </value>
-        public string Value { get; set; }
+        public string Value
+        {
+            get => Module.GetSettingValue(Key);
+            set
+            {
+                if (value != Value)
+                {
+                    AnsiConsole.MarkupLine($"The {Presenter.HighlightText("new value")} is \"{value}\"");
+                    Module.EditSetting(Key, value);
+                    AnsiConsole.MarkupLine($"The {Presenter.HighlightText("new value")} was saved");
+                }
+                else
+                {
+                    AnsiConsole.MarkupLine($"The new value {Presenter.HighlightText("equals")} the current value - no changes saved");
+                }
+            }
+        }
 
         /// <summary>   Constructor. </summary>
         /// <param name="module">   The module. </param>
         /// <param name="item">     The item. </param>
-        public OptionsConsoleItem(OptionsConsoleModule module, KeyValuePair<string, string> item) : base(item.Key.Contains(':') ? item.Key.Substring(item.Key.LastIndexOf(':')+1) : item.Key)
+        public OptionsConsoleItem(OptionsConsoleModule module, KeyValuePair<string, string> item) : base(item.Key.Contains(':') ? item.Key[(item.Key.LastIndexOf(':')+1)..] : item.Key)
         {
             Module = module;
-            Key = item.Key;
-            Value = item.Value;
+
+            var (key, value) = item;
+            Key = key;
         }
 
         /// <summary>   Displays this. </summary>
@@ -45,9 +62,6 @@ namespace SimpleSample
             AnsiConsole.WriteLine(Value);
             AnsiConsole.Render(new Rule().RuleStyle(Presenter.Style.DefaultTextStyle).LeftAligned());
             Value = AnsiConsole.Ask<string>($"Please enter a {Presenter.HighlightText("new value")}:{Environment.NewLine}");
-            AnsiConsole.MarkupLine($"The {Presenter.HighlightText("new value")} is \"{Value}\"");
-            Module.EditSetting(Key, Value);
-            AnsiConsole.MarkupLine($"The {Presenter.HighlightText("new value")} was saved");
 
             Parent.Display(null);
         }

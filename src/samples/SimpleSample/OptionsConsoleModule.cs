@@ -4,7 +4,6 @@ using System.Linq;
 using FluiTec.AppFx.Console.ConsoleItems;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.EnvironmentVariables;
-using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
@@ -13,18 +12,27 @@ namespace SimpleSample
     /// <summary>   The options console module. </summary>
     public class OptionsConsoleModule : ModuleConsoleItem
     {
-        /// <summary>   Default constructor. </summary>
-        public OptionsConsoleModule() : base("Options")
+        /// <summary>   Gets the save enabled provider. </summary>
+        /// <value> The save enabled provider. </value>
+        public IConfigurationProvider SaveEnabledProvider { get; }
+
+        /// <summary>   Gets or sets the configuration root. </summary>
+        /// <value> The configuration root. </value>
+        private IConfigurationRoot ConfigurationRoot { get; set; }
+
+        /// <summary>   Constructor. </summary>
+        /// <param name="saveEnabledProvider">  The save enabled provider. </param>
+        public OptionsConsoleModule(IConfigurationProvider saveEnabledProvider) : base("Options")
         {
+            SaveEnabledProvider = saveEnabledProvider;
         }
 
         /// <summary>   Initializes this. </summary>
         protected override void Initialize()
         {
-            var config = Application.HostServices.GetRequiredService<IConfigurationRoot>();
-            var providers = config.Providers
-                .Where(p => p.GetType() != typeof(EnvironmentVariablesConfigurationProvider))
-                .Where(p => !(p is JsonConfigurationProvider) || ((JsonConfigurationProvider) p).Source.Path != "appsettings.conf.json");
+            ConfigurationRoot = Application.HostServices.GetRequiredService<IConfigurationRoot>();
+            var providers = ConfigurationRoot.Providers
+                .Where(p => p.GetType() != typeof(EnvironmentVariablesConfigurationProvider));
             
             var configValues = new ConfigurationRoot(providers.ToList()).AsEnumerable().OrderBy(v => v.Key);
             foreach (var val in configValues)
@@ -75,12 +83,17 @@ namespace SimpleSample
                 .ToList();
         }
 
+        /// <summary>   Gets setting value. </summary>
+        /// <param name="key">  The key. </param>
+        /// <returns>   The setting value. </returns>
+        public string GetSettingValue(string key) => ConfigurationRoot[key];
+
         /// <summary>   Edit setting. </summary>
         /// <param name="key">      The key. </param>
         /// <param name="value">    The value. </param>
         public void EditSetting(string key, string value)
         {
-
+            SaveEnabledProvider?.Set(key, value);
         }
 
         /// <summary>   Edit setting. </summary>
