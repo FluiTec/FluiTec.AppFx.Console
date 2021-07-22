@@ -7,6 +7,7 @@ using FluiTec.AppFx.Data.Dapper.Mysql;
 using FluiTec.AppFx.Data.Dapper.Pgsql;
 using FluiTec.AppFx.Data.Dynamic.Configuration;
 using FluiTec.AppFx.Data.LiteDb;
+using FluiTec.AppFx.Options.Console;
 using FluiTec.AppFx.Options.Managers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -72,9 +73,7 @@ namespace SimpleSample
         {
         }
 
-        /// <summary>   Configure ASP net core. </summary>
-        /// <param name="services"> The services. </param>
-        private void ConfigureAspNetCore(IServiceCollection services)
+        private void ConfigureData(IServiceCollection services)
         {
             services.ConfigureDynamicDataProvider(ConfigurationManager,
                 new Func<DynamicDataOptions, IServiceProvider, ITestDataService>((options, provider) =>
@@ -100,6 +99,13 @@ namespace SimpleSample
             );
         }
 
+        /// <summary>   Configure ASP net core. </summary>
+        /// <param name="services"> The services. </param>
+        private void ConfigureAspNetCore(IServiceCollection services)
+        {
+            
+        }
+
         /// <summary>   Configure CLI. </summary>
         /// <param name="services"> The services. </param>
         private void ConfigureCli(IServiceCollection services)
@@ -111,6 +117,7 @@ namespace SimpleSample
                 var cp = conf.Providers.Single(p => p is SaveableJsonConfigurationProvider);
                 return new OptionsConsoleModule(cp);
             });
+            ConsoleHost.ConfigureModule(services, _ => new DynamicDataConsoleModule());
         }
 
         #endregion
@@ -122,6 +129,7 @@ namespace SimpleSample
         public void ConfigureServices(IServiceCollection services)
         {
             ConfigureOptions(services);
+            ConfigureData(services);
             ConfigureAspNetCore(services);
             ConfigureCli(services);
         }
