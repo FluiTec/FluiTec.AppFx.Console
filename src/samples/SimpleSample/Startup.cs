@@ -111,13 +111,13 @@ namespace SimpleSample
         private void ConfigureCli(IServiceCollection services)
         {
             ConsoleHost.Configure(Configuration, services);
+            services.ConfigureOptionsConsoleModule();
             ConsoleHost.ConfigureModule(services, provider =>
             {
                 var conf = provider.GetRequiredService<IConfigurationRoot>();
                 var cp = conf.Providers.Single(p => p is SaveableJsonConfigurationProvider);
-                return new OptionsConsoleModule(cp);
+                return new DynamicDataConsoleModule(cp);
             });
-            ConsoleHost.ConfigureModule(services, _ => new DynamicDataConsoleModule());
         }
 
         #endregion

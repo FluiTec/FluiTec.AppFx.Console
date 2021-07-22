@@ -54,4 +54,41 @@ namespace FluiTec.AppFx.Console.ConsoleItems
             return Name;
         }
     }
+
+    /// <summary>   An editable console item. </summary>
+    /// <typeparam name="T">    Generic type parameter. </typeparam>
+    public abstract class EditableConsoleItem<T> : ConsoleItem
+    {
+        /// <summary>   Gets or sets the value. </summary>
+        /// <value> The value. </value>
+        public virtual T Value
+        {
+            get => GetValue();
+            set => SetValue(value);
+        }
+
+        /// <summary>   Specialized default constructor for use only by derived class. </summary>
+        protected EditableConsoleItem()
+        {
+        }
+
+        /// <summary>   Specialized default constructor for use only by derived class. </summary>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when one or more required arguments are
+        ///     null.
+        /// </exception>
+        /// <param name="name"> The name. </param>
+        protected EditableConsoleItem(string name) : base(name)
+        {
+
+        }
+
+        /// <summary>   Gets the value. </summary>
+        /// <returns>   The value. </returns>
+        protected abstract T GetValue();
+
+        /// <summary>   Sets a value. </summary>
+        /// <param name="value">    The value. </param>
+        protected abstract void SetValue(T value);
+    }
 }
