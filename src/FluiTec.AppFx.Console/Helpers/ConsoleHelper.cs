@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.Extensions.Hosting;
 
 namespace FluiTec.AppFx.Console.Helpers
 {
@@ -45,6 +46,28 @@ namespace FluiTec.AppFx.Console.Helpers
             else
                 run(args);
             return true;
+        }
+
+        /// <summary>   Executes the console operation. </summary>
+        /// <param name="host">             The host to act on. </param>
+        /// <param name="applicationName">  Name of the application. </param>
+        /// <param name="args">             The arguments. </param>
+        /// <returns>   True if it succeeds, false if it fails. </returns>
+        public static bool RunConsole(this IHost host, string applicationName, string[] args)
+        {
+            var run = new Action<string[]>(a => ConsoleHost.FromHost(host).Run(applicationName, a));
+            var iRun = new Action<string[]>(a => ConsoleHost.FromHost(host).RunInteractive(applicationName, a));
+            return RunConsole(run, iRun, args);
+        }
+
+        /// <summary>   Executes the console operation. </summary>
+        /// <param name="host">             The host to act on. </param>
+        /// <param name="applicationType">  Type of the application. </param>
+        /// <param name="args">             The arguments. </param>
+        /// <returns>   True if it succeeds, false if it fails. </returns>
+        public static bool RunConsole(this IHost host, Type applicationType, string[] args)
+        {
+            return host.RunConsole(applicationType.Assembly.GetName().Name, args);
         }
     }
 }
