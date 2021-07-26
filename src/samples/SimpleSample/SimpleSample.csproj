@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluiTec.AppFx.Console" Version="1.0.6" />
+    <PackageReference Include="FluiTec.AppFx.Console" Version="1.0.7" />
     <PackageReference Include="FluiTec.AppFx.Data.Dynamic" Version="1.0.75" />
     <PackageReference Include="FluiTec.AppFx.Options" Version="1.1.62" />
   </ItemGroup>

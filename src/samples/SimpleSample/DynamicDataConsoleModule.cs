@@ -29,6 +29,7 @@ namespace SimpleSample
         {
             SaveEnabledProvider = saveEnabledProvider;
             Items.Add(new DynamicDataProviderItem(this));
+            Items.Add(new ConnectionStringsConsoleItem(this));
         }
 
         /// <summary>   Initializes this. </summary>
