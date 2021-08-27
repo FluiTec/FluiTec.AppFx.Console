@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using Spectre.Console;
 
 namespace FluiTec.AppFx.Console.ConsoleItems
@@ -8,6 +7,16 @@ namespace FluiTec.AppFx.Console.ConsoleItems
     /// <typeparam name="T">    Generic type parameter. </typeparam>
     public abstract class EditableConsoleItem<T> : ConsoleItem
     {
+        /// <summary>   Specialized default constructor for use only by derived class. </summary>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when one or more required arguments are
+        ///     null.
+        /// </exception>
+        /// <param name="name"> The name. </param>
+        protected EditableConsoleItem(string name) : base(name)
+        {
+        }
+
         /// <summary>   Gets or sets the value. </summary>
         /// <value> The value. </value>
         public virtual T Value
@@ -23,19 +32,10 @@ namespace FluiTec.AppFx.Console.ConsoleItems
                 }
                 else
                 {
-                    AnsiConsole.MarkupLine($"The new value {Presenter.HighlightText("equals")} the current value - no changes saved");
+                    AnsiConsole.MarkupLine(
+                        $"The new value {Presenter.HighlightText("equals")} the current value - no changes saved");
                 }
             }
-        }
-
-        /// <summary>   Specialized default constructor for use only by derived class. </summary>
-        /// <exception cref="ArgumentNullException">
-        ///     Thrown when one or more required arguments are
-        ///     null.
-        /// </exception>
-        /// <param name="name"> The name. </param>
-        protected EditableConsoleItem(string name) : base(name)
-        {
         }
 
         /// <summary>   Displays this. </summary>
