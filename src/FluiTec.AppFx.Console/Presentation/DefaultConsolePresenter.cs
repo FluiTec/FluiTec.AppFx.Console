@@ -26,8 +26,17 @@ namespace FluiTec.AppFx.Console.Presentation
 
         /// <summary>   Gets the default page size. </summary>
         /// <value> The default page size. </value>
-        public int DefaultPageSize { get; } = 10;
+        public int DefaultPageSize => 10;
 
+        /// <summary>
+        /// Default text.
+        /// </summary>
+        ///
+        /// <param name="text"> The text. </param>
+        ///
+        /// <returns>
+        /// A string.
+        /// </returns>
         public string DefaultText(string text)
         {
             return $"[{Style.DefaultTextStyle.Foreground.ToMarkup()}][/]";
@@ -39,6 +48,20 @@ namespace FluiTec.AppFx.Console.Presentation
         public string HighlightText(string text)
         {
             return $"[{Style.HighlightTextStyle.Foreground.ToMarkup()}]{text}[/]";
+        }
+
+        /// <summary>
+        /// Error text.
+        /// </summary>
+        ///
+        /// <param name="text"> The text. </param>
+        ///
+        /// <returns>
+        /// A string.
+        /// </returns>
+        public string ErrorText(string text)
+        {
+            return $"[{Style.ErrorTextStyle.Foreground.ToMarkup()}]{text}[/]";
         }
 
         /// <summary>   Default list entry converter. </summary>

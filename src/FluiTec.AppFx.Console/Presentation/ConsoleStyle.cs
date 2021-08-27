@@ -13,6 +13,15 @@ namespace FluiTec.AppFx.Console.Presentation
         /// <value> The highlight text style. </value>
         public Style HighlightTextStyle { get; set; }
 
+        /// <summary>
+        /// Gets or sets the error text style.
+        /// </summary>
+        ///
+        /// <value>
+        /// The error text style.
+        /// </value>
+        public Style ErrorTextStyle { get; set; }
+
         /// <summary>   Gets or sets the select highlight text style. </summary>
         /// <value> The select highlight text style. </value>
         public Style SelectHighlightTextStyle { get; set; }
