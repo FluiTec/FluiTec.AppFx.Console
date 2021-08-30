@@ -13,7 +13,8 @@ namespace FluiTec.AppFx.Console.Presentation
             {
                 DefaultTextStyle = "grey",
                 HighlightTextStyle = "gold3",
-                SelectHighlightTextStyle = "darkgoldenrod"
+                SelectHighlightTextStyle = "darkgoldenrod",
+                ErrorTextStyle = "red"
             };
             ActivatedItems = new List<IConsoleItem>();
         }
