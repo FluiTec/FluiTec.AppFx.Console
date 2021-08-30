@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.CommandLine;
+using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
 
@@ -44,6 +46,16 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         public void Run()
         {
             // TODO: parse arguments and execute
+            var modules = Items.Where(i => i is ModuleConsoleItem).Cast<ModuleConsoleItem>();
+
+            var rootCommand = new RootCommand(Name);
+
+            foreach (var module in modules)
+            {
+                rootCommand.AddCommand(module.ConfigureCommand());
+            }
+
+            rootCommand.Invoke(ConsoleArgs);
         }
 
         /// <summary>   Executes the console application interactively. </summary>

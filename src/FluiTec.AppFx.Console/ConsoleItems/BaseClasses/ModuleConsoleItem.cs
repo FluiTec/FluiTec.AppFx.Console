@@ -33,5 +33,14 @@ namespace FluiTec.AppFx.Console.ConsoleItems
 
         /// <summary>   Initializes this.  </summary>
         protected abstract void Initialize();
+
+        /// <summary>
+        /// Configure command.
+        /// </summary>
+        ///
+        /// <returns>
+        /// A System.CommandLine.Command.
+        /// </returns>
+        public abstract System.CommandLine.Command ConfigureCommand();
     }
 }
