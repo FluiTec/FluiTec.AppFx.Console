@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\FluiTec.AppFx.Console\FluiTec.AppFx.Console.csproj" />
+    <ProjectReference Include="..\..\FluiTec.AppFx.Console\FluiTec.AppFx.Console.csproj" />
   </ItemGroup>
 
 </Project>
