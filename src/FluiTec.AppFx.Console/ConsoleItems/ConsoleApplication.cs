@@ -43,7 +43,7 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         public string[] ConsoleArgs { get; }
 
         /// <summary>   Executes the console application.  </summary>
-        public void Run()
+        public int Run()
         {
             // TODO: parse arguments and execute
             var modules = Items.Where(i => i is ModuleConsoleItem).Cast<ModuleConsoleItem>();
@@ -55,7 +55,7 @@ namespace FluiTec.AppFx.Console.ConsoleItems
                 rootCommand.AddCommand(module.ConfigureCommand());
             }
 
-            rootCommand.Invoke(ConsoleArgs);
+            return rootCommand.Invoke(ConsoleArgs);
         }
 
         /// <summary>   Executes the console application interactively. </summary>

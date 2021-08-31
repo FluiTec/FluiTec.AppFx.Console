@@ -37,10 +37,10 @@ namespace FluiTec.AppFx.Console
         /// <summary>   Executes the console-application. </summary>
         /// <param name="applicationName">  Name of the application. </param>
         /// <param name="args">             Console arguments. </param>
-        public void Run(string applicationName, string[] args)
+        public int Run(string applicationName, string[] args)
         {
             var consoleApplication = new ConsoleApplication(applicationName, HostServices, args);
-            consoleApplication.Run();
+            return consoleApplication.Run();
         }
 
         /// <summary>   Executes the console-application interactively. </summary>

@@ -7,13 +7,13 @@ namespace FluiTec.AppFx.Console.Samples.SimpleSample
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static int Main(string[] args)
         {
             var services = new ServiceCollection();
             ConsoleHost.ConfigureModule(services, provider => new TestModule());
             var provider = services.BuildServiceProvider();
             
-            new ConsoleHost(provider).Run("Test-App", args);
+            return new ConsoleHost(provider).Run("Test-App", args);
         }
     }
 
