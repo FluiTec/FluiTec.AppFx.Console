@@ -48,14 +48,16 @@ namespace FluiTec.AppFx.Console.Samples.SimpleSample
             var updateCmd = new Command("--edit", "Edit a configuration-entry.");
             updateCmd.AddOption(new Option<string>("--key", "Key of the configuration-entry.") {IsRequired = true});
             updateCmd.AddOption(new Option<string>("--value", "Value of the the configuration-entry.") {IsRequired = false});
-            updateCmd.Handler = CommandHandler.Create<string, string>(ProcessEdit);
+            updateCmd.Handler = CommandHandler.Create(new System.Func<string, string, int>((k, var) => ProcessEdit(k, var)));
+
             cmd.AddCommand(updateCmd);
             return cmd;
         }
 
-        private void ProcessEdit(string key, string val)
+        private int ProcessEdit(string key, string val)
         {
             System.Console.WriteLine($">> {key}:{val}");
+            return 0;
         }
     }
 }
