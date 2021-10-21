@@ -46,7 +46,7 @@ namespace FluiTec.AppFx.Console.ConsoleItems
 
             Presenter.PresentHeader($"View/Edit {{{Name}}} - current value:");
             AnsiConsole.WriteLine(Value?.ToString() ?? "(null)");
-            AnsiConsole.Render(new Rule().RuleStyle(Presenter.Style.DefaultTextStyle).LeftAligned());
+            AnsiConsole.Write(new Rule().RuleStyle(Presenter.Style.DefaultTextStyle).LeftAligned());
             if (AnsiConsole.Confirm("Edit value?"))
                 Value = AnsiConsole.Ask<T>(
                     $"Please enter a {Presenter.HighlightText("new value")}:{Environment.NewLine}");

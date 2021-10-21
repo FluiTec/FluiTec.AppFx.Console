@@ -77,7 +77,7 @@ namespace FluiTec.AppFx.Console.Presentation
         /// <param name="header">   The header. </param>
         public void PresentHeader(string header)
         {
-            AnsiConsole.Render(new Rule($"[{Style.HighlightTextStyle.Foreground.ToMarkup()}]{header}[/]")
+            AnsiConsole.Write(new Rule($"[{Style.HighlightTextStyle.Foreground.ToMarkup()}]{header}[/]")
                 .RuleStyle(Style.DefaultTextStyle).LeftAligned());
         }
     }
