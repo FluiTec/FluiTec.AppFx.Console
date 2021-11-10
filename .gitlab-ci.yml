@@ -41,7 +41,7 @@ publish-baget:
             - master
     script:
         - cd ..
-        - NUGET_VERSION=v$(cat ..\.version)
+        - NUGET_VERSION=v$(cat .version)
         - cd $srcDir
         - echo $NUGET_VERSION
         - dotnet build --no-restore -c Release /p:Version=""
