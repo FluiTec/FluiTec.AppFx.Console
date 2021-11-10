@@ -4,6 +4,7 @@ stages:
     - build
     - unittest
     - integrationtest
+    - publish
 
 variables:
     srcDir: "src"
@@ -32,3 +33,9 @@ integrationtest:
     stage: integrationtest
     script:
         - dotnet test --no-restore --verbosity minimal --filter $integrationfilter
+
+publish-baget:
+    stage: publish
+    script:
+        - dotnet build --no-restore -c Release /p:Version=""
+        - dotnet nuget push -s "%BAGET_URL%" -k "%BAGET_KEY%" **/*.nupkg --skip-duplicate
