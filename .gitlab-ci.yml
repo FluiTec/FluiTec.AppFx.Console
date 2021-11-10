@@ -17,7 +17,6 @@ before_script:
     - git submodule sync --recursive
     - git submodule update --init --recursive
     - cd $srcDir
-    - dotnet nuget add source "$NUGET_URL"
     - dotnet restore --verbosity minimal
 
 build:
