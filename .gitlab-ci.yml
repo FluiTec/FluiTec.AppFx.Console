@@ -40,7 +40,9 @@ publish-baget:
         refs:
             - master
     script:
+        - cd ..
         - NUGET_VERSION=v$(cat ..\.version)
+        - cd $srcDir
         - echo $NUGET_VERSION
         - dotnet build --no-restore -c Release /p:Version=""
         - dotnet nuget push -s "%BAGET_URL%" -k "%BAGET_KEY%" **/*.nupkg --skip-duplicate
