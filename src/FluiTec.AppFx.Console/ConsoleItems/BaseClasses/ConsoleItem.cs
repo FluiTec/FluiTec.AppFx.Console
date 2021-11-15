@@ -7,11 +7,6 @@ namespace FluiTec.AppFx.Console.ConsoleItems
     public abstract class ConsoleItem : IConsoleItem
     {
         /// <summary>   Specialized default constructor for use only by derived class. </summary>
-        protected ConsoleItem()
-        {
-        }
-
-        /// <summary>   Specialized default constructor for use only by derived class. </summary>
         /// <exception cref="ArgumentNullException">
         ///     Thrown when one or more required arguments are
         ///     null.
@@ -37,11 +32,11 @@ namespace FluiTec.AppFx.Console.ConsoleItems
 
         /// <summary>   Gets the parent. </summary>
         /// <value> The parent. </value>
-        public IConsoleItem Parent { get; protected set; }
+        public IConsoleItem? Parent { get; protected set; }
 
         /// <summary>   Displays this. </summary>
         /// <param name="parent">   The parent. </param>
-        public virtual void Display(IConsoleItem parent)
+        public virtual void Display(IConsoleItem? parent)
         {
             if (parent != null)
                 Parent = parent;

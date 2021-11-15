@@ -13,9 +13,9 @@
 
         /// <summary>   Gets the parent. </summary>
         /// <value> The parent. </value>
-        IConsoleItem Parent { get; }
+        IConsoleItem? Parent { get; }
 
         /// <summary>   Displays this.  </summary>
-        public void Display(IConsoleItem parent);
+        public void Display(IConsoleItem? parent);
     }
 }

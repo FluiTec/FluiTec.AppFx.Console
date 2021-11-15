@@ -24,7 +24,8 @@ namespace FluiTec.AppFx.Console.ConsoleItems
             get => GetValue();
             set
             {
-                if (!value.Equals(GetValue()))
+                var currentValue = GetValue();
+                if (value == null && currentValue != null && !currentValue.Equals(value) || currentValue == null && value != null && !value.Equals(currentValue))
                 {
                     AnsiConsole.MarkupLine($"The {Presenter.HighlightText("new value")} is \"{value}\"");
                     SetValue(value);
@@ -40,7 +41,7 @@ namespace FluiTec.AppFx.Console.ConsoleItems
 
         /// <summary>   Displays this. </summary>
         /// <param name="parent">   The parent. </param>
-        public override void Display(IConsoleItem parent)
+        public override void Display(IConsoleItem? parent)
         {
             base.Display(parent);
 

@@ -81,7 +81,7 @@ namespace FluiTec.AppFx.Console
         public static void ConfigureModule<TModuleType>(IServiceCollection services,
             Func<IServiceProvider, TModuleType> implementationFactory)
         {
-            services.AddSingleton(typeof(ModuleConsoleItem), provider => implementationFactory(provider));
+            services.AddSingleton(typeof(ModuleConsoleItem), provider => implementationFactory(provider) ?? throw new ArgumentNullException(nameof(implementationFactory)));
         }
 
         #endregion

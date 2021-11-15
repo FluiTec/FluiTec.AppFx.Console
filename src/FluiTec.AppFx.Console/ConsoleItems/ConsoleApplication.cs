@@ -18,10 +18,8 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         /// <param name="name">         The name. </param>
         /// <param name="hostServices"> The host services. </param>
         /// <param name="consoleArgs">  . </param>
-        public ConsoleApplication(string name, IServiceProvider hostServices, string[] consoleArgs)
+        public ConsoleApplication(string name, IServiceProvider hostServices, string[] consoleArgs) : base(name)
         {
-            // ReSharper disable once VirtualMemberCallInConstructor
-            Name = name ?? throw new ArgumentNullException(nameof(name));
             HostServices = hostServices ?? throw new ArgumentNullException(nameof(hostServices));
             ConsoleArgs = consoleArgs ?? throw new ArgumentNullException(nameof(consoleArgs));
 
@@ -29,10 +27,6 @@ namespace FluiTec.AppFx.Console.ConsoleItems
             foreach (var item in Items)
                 ((ModuleConsoleItem) item).Application = this;
         }
-
-        /// <summary>   Gets the name. </summary>
-        /// <value> The name. </value>
-        public override string Name { get; protected set; }
 
         /// <summary>   Gets the host services. </summary>
         /// <value> The host services. </value>
@@ -65,7 +59,7 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         }
 
         /// <summary>   Displays this. </summary>
-        public override void Display(IConsoleItem parent)
+        public override void Display(IConsoleItem? parent)
         {
             AnsiConsole.Clear();
             base.Display(parent);

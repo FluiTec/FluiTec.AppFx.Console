@@ -51,7 +51,7 @@ namespace FluiTec.AppFx.Console.Configuration
         /// <param name="reloadOnChange">   True to reload on change. </param>
         /// <returns>   The <see cref="IConfigurationBuilder" />. </returns>
         public static IConfigurationBuilder AddSaveableJsonFile(this IConfigurationBuilder builder,
-            IFileProvider provider, string path, bool optional, bool reloadOnChange)
+            IFileProvider? provider, string path, bool optional, bool reloadOnChange)
         {
             if (builder == null) throw new ArgumentNullException(nameof(builder));
             if (string.IsNullOrEmpty(path)) throw new ArgumentNullException(nameof(path));

@@ -8,6 +8,7 @@
     <PackageProjectUrl>https://www.nuget.org/packages/FluiTec.AppFx.Console/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/FluiTec/FluiTec.AppFx.Console</RepositoryUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+	<Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
