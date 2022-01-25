@@ -1,6 +1,7 @@
 ﻿using System.CommandLine;
 using System.CommandLine.Invocation;
 using FluiTec.AppFx.Console.ConsoleItems;
+using FluiTec.AppFx.Console.Programs;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FluiTec.AppFx.Console.Samples.SimpleSample
