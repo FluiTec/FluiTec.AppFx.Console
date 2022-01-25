@@ -13,11 +13,11 @@
 
         /// <summary>   Gets or sets the parent. </summary>
         /// <value> The parent. </value>
-        public IConsoleItem? Parent { get; private set; }
+        public IConsoleItem Parent { get; private set; }
 
         /// <summary>   Displays this. </summary>
         /// <param name="parent">   The parent. </param>
-        public void Display(IConsoleItem? parent)
+        public void Display(IConsoleItem parent)
         {
             Parent = parent?.Parent;
             Parent?.Display(null);

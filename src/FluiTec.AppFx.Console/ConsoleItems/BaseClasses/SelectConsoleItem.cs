@@ -47,7 +47,7 @@ namespace FluiTec.AppFx.Console.ConsoleItems
 
         /// <summary>   Displays this. </summary>
         /// <param name="parent">   The parent. </param>
-        public override void Display(IConsoleItem? parent)
+        public override void Display(IConsoleItem parent)
         {
             base.Display(parent);
 

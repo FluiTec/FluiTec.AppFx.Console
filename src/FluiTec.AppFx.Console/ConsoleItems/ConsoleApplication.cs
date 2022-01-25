@@ -59,7 +59,7 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         }
 
         /// <summary>   Displays this. </summary>
-        public override void Display(IConsoleItem? parent)
+        public override void Display(IConsoleItem parent)
         {
             AnsiConsole.Clear();
             base.Display(parent);
