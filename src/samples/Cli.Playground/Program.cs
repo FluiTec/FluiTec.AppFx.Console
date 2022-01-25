@@ -92,13 +92,6 @@ namespace Cli.Playground
         }
     }
 
-    public class MigrationOptions
-    {
-        public string ServiceName { get; set; }
-        public long MigrationVersion { get; set; }
-        public MigrationOption Direction { get; set; }
-    }
-
     public enum MigrationOption
     {
         Apply,

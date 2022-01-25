@@ -5,15 +5,18 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace FluiTec.AppFx.Console.Samples.SimpleSample
 {
-    internal class Program
+    internal class Program : DependencyInjectionProgram
     {
         private static int Main(string[] args)
-        {
-            var services = new ServiceCollection();
-            ConsoleHost.ConfigureModule(services, provider => new TestModule());
-            var provider = services.BuildServiceProvider();
-            
+        { 
+            var provider = new Program().GetServiceProvider();
             return new ConsoleHost(provider).Run("Test-App", args);
+        }
+
+        protected override ServiceCollection ConfigureServices(ServiceCollection services)
+        {
+            ConsoleHost.ConfigureModule(services, provider => new TestModule());
+            return services;
         }
     }
 
