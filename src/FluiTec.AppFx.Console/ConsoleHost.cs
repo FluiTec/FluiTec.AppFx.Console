@@ -68,6 +68,7 @@ namespace FluiTec.AppFx.Console
         /// <summary>   Configures. </summary>
         /// <param name="config">   The configuration. </param>
         /// <param name="services"> The services. </param>
+        // ReSharper disable once UnusedMember.Global
         public static void Configure(IConfigurationRoot config, IServiceCollection services)
         {
             services.AddSingleton(services);
@@ -81,7 +82,9 @@ namespace FluiTec.AppFx.Console
         public static void ConfigureModule<TModuleType>(IServiceCollection services,
             Func<IServiceProvider, TModuleType> implementationFactory)
         {
-            services.AddSingleton(typeof(ModuleConsoleItem), provider => implementationFactory(provider) ?? throw new ArgumentNullException(nameof(implementationFactory)));
+            services.AddSingleton(typeof(ModuleConsoleItem),
+                provider => implementationFactory(provider) ??
+                            throw new ArgumentNullException(nameof(implementationFactory)));
         }
 
         #endregion

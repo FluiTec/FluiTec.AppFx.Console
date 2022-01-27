@@ -30,13 +30,11 @@ namespace FluiTec.AppFx.Console.Presentation
         public int DefaultPageSize => 10;
 
         /// <summary>
-        /// Default text.
+        ///     Default text.
         /// </summary>
-        ///
         /// <param name="text"> The text. </param>
-        ///
         /// <returns>
-        /// A string.
+        ///     A string.
         /// </returns>
         public string DefaultText(string text)
         {
@@ -52,13 +50,11 @@ namespace FluiTec.AppFx.Console.Presentation
         }
 
         /// <summary>
-        /// Error text.
+        ///     Error text.
         /// </summary>
-        ///
         /// <param name="text"> The text. </param>
-        ///
         /// <returns>
-        /// A string.
+        ///     A string.
         /// </returns>
         public string ErrorText(string text)
         {

@@ -44,10 +44,7 @@ namespace FluiTec.AppFx.Console.ConsoleItems
 
             var rootCommand = new RootCommand(Name);
 
-            foreach (var module in modules)
-            {
-                rootCommand.AddCommand(module.ConfigureCommand());
-            }
+            foreach (var module in modules) rootCommand.AddCommand(module.ConfigureCommand());
 
             return rootCommand.Invoke(ConsoleArgs);
         }

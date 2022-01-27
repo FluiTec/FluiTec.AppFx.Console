@@ -7,26 +7,26 @@ using Microsoft.Extensions.DependencyInjection;
 namespace FluiTec.AppFx.Console.Programs
 {
     /// <summary>
-    /// A configurable dependency injection program.
+    ///     A configurable dependency injection program.
     /// </summary>
+    // ReSharper disable once UnusedMember.Global
     public abstract class ConfigurableDependencyInjectionProgram : DependencyInjectionProgram
     {
         /// <summary>
-        /// Event queue for all listeners interested in ConfigurationBuilderCreated events.
+        ///     Event queue for all listeners interested in ConfigurationBuilderCreated events.
         /// </summary>
         public event EventHandler<ConfigurationBuilderCreatedEventArgs> ConfigurationBuilderCreated;
 
         /// <summary>
-        /// Event queue for all listeners interested in ConfigurationCreated events.
+        ///     Event queue for all listeners interested in ConfigurationCreated events.
         /// </summary>
         public event EventHandler<ConfigurationCreatedEventArgs> ConfigurationCreated;
 
         /// <summary>
-        /// Gets the configuration.
+        ///     Gets the configuration.
         /// </summary>
-        ///
         /// <returns>
-        /// The configuration.
+        ///     The configuration.
         /// </returns>
         protected virtual IConfigurationRoot GetConfiguration()
         {
@@ -44,24 +44,20 @@ namespace FluiTec.AppFx.Console.Programs
         }
 
         /// <summary>
-        /// Configures the given configuration builder.
+        ///     Configures the given configuration builder.
         /// </summary>
-        ///
         /// <param name="configurationBuilder"> The configuration builder. </param>
-        ///
         /// <returns>
-        /// An IConfigurationBuilder.
+        ///     An IConfigurationBuilder.
         /// </returns>
         protected abstract IConfigurationBuilder Configure(IConfigurationBuilder configurationBuilder);
 
         /// <summary>
-        /// Configure services.
+        ///     Configure services.
         /// </summary>
-        ///
         /// <param name="services"> The services. </param>
-        ///
         /// <returns>
-        /// A ServiceCollection.
+        ///     A ServiceCollection.
         /// </returns>
         protected override ServiceCollection ConfigureServices(ServiceCollection services)
         {
@@ -70,9 +66,8 @@ namespace FluiTec.AppFx.Console.Programs
         }
 
         /// <summary>
-        /// Executes the 'configuration builder created' action.
+        ///     Executes the 'configuration builder created' action.
         /// </summary>
-        ///
         /// <param name="configurationBuilder"> The configuration builder. </param>
         protected virtual void OnConfigurationBuilderCreated(IConfigurationBuilder configurationBuilder)
         {
@@ -80,9 +75,8 @@ namespace FluiTec.AppFx.Console.Programs
         }
 
         /// <summary>
-        /// Executes the 'configuration created' action.
+        ///     Executes the 'configuration created' action.
         /// </summary>
-        ///
         /// <param name="configurationRoot">    The configuration root. </param>
         protected virtual void OnConfigurationCreated(IConfigurationRoot configurationRoot)
         {

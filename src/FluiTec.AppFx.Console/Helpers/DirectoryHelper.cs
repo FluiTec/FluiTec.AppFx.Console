@@ -35,6 +35,7 @@ namespace FluiTec.AppFx.Console.Helpers
 
         /// <summary>   Gets application directory. </summary>
         /// <returns>   The application directory. </returns>
+        // ReSharper disable once UnusedMember.Global
         public static string GetApplicationDirectory()
         {
             return AppContext.BaseDirectory;

@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 namespace FluiTec.AppFx.Console.Helpers
 {
     /// <summary>   A console helper. </summary>
+    // ReSharper disable once UnusedMember.Global
     public static class ConsoleHelper
     {
         /// <summary>   Gets or sets the console required character. </summary>
@@ -65,6 +66,7 @@ namespace FluiTec.AppFx.Console.Helpers
         /// <param name="applicationType">  Type of the application. </param>
         /// <param name="args">             The arguments. </param>
         /// <returns>   True if it succeeds, false if it fails. </returns>
+        // ReSharper disable once UnusedMember.Global
         public static bool RunConsole(this IHost host, Type applicationType, string[] args)
         {
             return host.RunConsole(applicationType.Assembly.GetName().Name, args);

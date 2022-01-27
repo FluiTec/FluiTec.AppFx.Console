@@ -5,6 +5,7 @@ namespace FluiTec.AppFx.Console.ConsoleItems
 {
     /// <summary>   An editable console item. </summary>
     /// <typeparam name="T">    Generic type parameter. </typeparam>
+    // ReSharper disable once UnusedMember.Global
     public abstract class EditableConsoleItem<T> : ConsoleItem
     {
         /// <summary>   Specialized default constructor for use only by derived class. </summary>
@@ -25,7 +26,7 @@ namespace FluiTec.AppFx.Console.ConsoleItems
             set
             {
                 var currentValue = GetValue();
-                if (value == null && currentValue != null && !currentValue.Equals(value) || currentValue == null && value != null && !value.Equals(currentValue))
+                if (value == null && currentValue != null || currentValue == null && value != null)
                 {
                     AnsiConsole.MarkupLine($"The {Presenter.HighlightText("new value")} is \"{value}\"");
                     SetValue(value);

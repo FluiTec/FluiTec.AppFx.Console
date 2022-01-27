@@ -8,14 +8,14 @@ namespace FluiTec.AppFx.Console.Presentation
     {
         /// <summary>   Gets the activated items. </summary>
         /// <value> The activated items. </value>
+        // ReSharper disable once UnusedMemberInSuper.Global
         List<IConsoleItem> ActivatedItems { get; }
 
         /// <summary>
-        /// Gets the style.
+        ///     Gets the style.
         /// </summary>
-        ///
         /// <value>
-        /// The style.
+        ///     The style.
         /// </value>
         ConsoleStyle Style { get; }
 
@@ -34,14 +34,13 @@ namespace FluiTec.AppFx.Console.Presentation
         string HighlightText(string text);
 
         /// <summary>
-        /// Error text.
+        ///     Error text.
         /// </summary>
-        ///
         /// <param name="text"> The text. </param>
-        ///
         /// <returns>
-        /// A string.
+        ///     A string.
         /// </returns>
+        // ReSharper disable once UnusedMember.Global
         string ErrorText(string text);
 
         /// <summary>   Default list entry converter. </summary>

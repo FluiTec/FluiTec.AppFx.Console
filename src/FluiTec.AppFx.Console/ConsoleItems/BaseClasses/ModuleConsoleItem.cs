@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.CommandLine;
 
 namespace FluiTec.AppFx.Console.ConsoleItems
 {
@@ -29,12 +29,11 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         protected abstract void Initialize();
 
         /// <summary>
-        /// Configure command.
+        ///     Configure command.
         /// </summary>
-        ///
         /// <returns>
-        /// A System.CommandLine.Command.
+        ///     A System.CommandLine.Command.
         /// </returns>
-        public abstract System.CommandLine.Command ConfigureCommand();
+        public abstract Command ConfigureCommand();
     }
 }

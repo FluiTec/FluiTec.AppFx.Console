@@ -5,26 +5,25 @@ using Microsoft.Extensions.DependencyInjection;
 namespace FluiTec.AppFx.Console.Programs
 {
     /// <summary>
-    /// A dependency injection program.
+    ///     A dependency injection program.
     /// </summary>
     public abstract class DependencyInjectionProgram
     {
         /// <summary>
-        /// Event queue for all listeners interested in ServiceProviderCreated events.
+        ///     Event queue for all listeners interested in ServiceProviderCreated events.
         /// </summary>
         public event EventHandler<ServiceProviderCreatedEventArgs> ServiceProviderCreated;
 
         /// <summary>
-        /// Event queue for all listeners interested in ServicesConfigured events.
+        ///     Event queue for all listeners interested in ServicesConfigured events.
         /// </summary>
-        public event EventHandler<ServicesConfiguredEventArgs> ServicesConfigured; 
+        public event EventHandler<ServicesConfiguredEventArgs> ServicesConfigured;
 
         /// <summary>
-        /// Gets service provider.
+        ///     Gets service provider.
         /// </summary>
-        ///
         /// <returns>
-        /// The service provider.
+        ///     The service provider.
         /// </returns>
         protected virtual ServiceProvider GetServiceProvider()
         {
@@ -40,20 +39,17 @@ namespace FluiTec.AppFx.Console.Programs
         }
 
         /// <summary>
-        /// Configure services.
+        ///     Configure services.
         /// </summary>
-        ///
         /// <param name="services"> The services. </param>
-        ///
         /// <returns>
-        /// A ServiceCollection.
+        ///     A ServiceCollection.
         /// </returns>
         protected abstract ServiceCollection ConfigureServices(ServiceCollection services);
 
         /// <summary>
-        /// Executes the 'service provider created' action.
+        ///     Executes the 'service provider created' action.
         /// </summary>
-        ///
         /// <param name="serviceProvider">  The service provider. </param>
         protected virtual void OnServiceProviderCreated(ServiceProvider serviceProvider)
         {
@@ -61,9 +57,8 @@ namespace FluiTec.AppFx.Console.Programs
         }
 
         /// <summary>
-        /// Executes the 'services configured' action.
+        ///     Executes the 'services configured' action.
         /// </summary>
-        ///
         /// <param name="services"> The services. </param>
         protected virtual void OnServicesConfigured(ServiceCollection services)
         {

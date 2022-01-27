@@ -5,6 +5,7 @@
     {
         /// <summary>   Gets the name. </summary>
         /// <value> The name. </value>
+        // ReSharper disable once UnusedMemberInSuper.Global
         string Name { get; }
 
         /// <summary>   Gets the name of the display. </summary>

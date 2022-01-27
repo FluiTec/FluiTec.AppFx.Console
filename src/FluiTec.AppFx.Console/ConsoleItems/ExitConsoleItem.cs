@@ -4,7 +4,7 @@
     public class ExitConsoleItem : ConsoleItem
     {
         /// <summary>
-        /// Default constructor.
+        ///     Default constructor.
         /// </summary>
         public ExitConsoleItem() : base("Quit application")
         {

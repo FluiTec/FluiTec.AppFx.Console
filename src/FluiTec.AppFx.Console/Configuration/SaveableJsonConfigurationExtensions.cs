@@ -5,12 +5,14 @@ using Microsoft.Extensions.FileProviders;
 namespace FluiTec.AppFx.Console.Configuration
 {
     /// <summary>   A saveable JSON configuration extensions. </summary>
+    // ReSharper disable once UnusedMember.Global
     public static class SaveableJsonConfigurationExtensions
     {
         /// <summary>   Adds a JSON configuration source to <paramref name="builder" />. </summary>
         /// <param name="builder">  The <see cref="IConfigurationBuilder" /> to add to. </param>
         /// <param name="path">     Full pathname of the file. </param>
         /// <returns>   The <see cref="IConfigurationBuilder" />. </returns>
+        // ReSharper disable once UnusedMember.Global
         public static IConfigurationBuilder AddSaveableJsonFile(this IConfigurationBuilder builder, string path)
         {
             return AddSaveableJsonFile(builder, null, path, false, false);
@@ -21,6 +23,7 @@ namespace FluiTec.AppFx.Console.Configuration
         /// <param name="path">     Full pathname of the file. </param>
         /// <param name="optional"> True to optional. </param>
         /// <returns>   The <see cref="IConfigurationBuilder" />. </returns>
+        // ReSharper disable once UnusedMember.Global
         public static IConfigurationBuilder AddSaveableJsonFile(this IConfigurationBuilder builder, string path,
             bool optional)
         {
@@ -33,6 +36,7 @@ namespace FluiTec.AppFx.Console.Configuration
         /// <param name="optional">         True to optional. </param>
         /// <param name="reloadOnChange">   True to reload on change. </param>
         /// <returns>   The <see cref="IConfigurationBuilder" />. </returns>
+        // ReSharper disable once UnusedMember.Global
         public static IConfigurationBuilder AddSaveableJsonFile(this IConfigurationBuilder builder, string path,
             bool optional, bool reloadOnChange)
         {
