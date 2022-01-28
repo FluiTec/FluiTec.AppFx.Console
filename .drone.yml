@@ -1,0 +1,35 @@
+image: mcr.microsoft.com/dotnet/sdk:6.0
+
+stages:
+    - build
+    - unittest
+    - integrationtest
+    - publish
+
+variables:
+    srcDir: "src"
+    projectName: "FluiTec.AppFx.Console"
+    testfilter: "FullyQualifiedName~FluiTec.AppFx.Console&FullyQualifiedName~.Tests"
+    integrationfilter: "FullyQualifiedName~FluiTec.AppFx.Console&FullyQualifiedName~.IntegrationTests"
+    GIT_SUBMODULE_STRATEGY: recursive
+    
+before_script:
+    - git submodule sync --recursive
+    - git submodule update --init --recursive
+    - cd $srcDir
+    - dotnet restore --verbosity minimal
+
+build:
+    stage: build
+    script:
+        - dotnet build --no-restore
+        
+unittest:
+    stage: unittest
+    script:
+        - dotnet test --no-restore --verbosity minimal --filter $testfilter
+
+integrationtest:
+    stage: integrationtest
+    script:
+        - dotnet test --no-restore --verbosity minimal --filter $integrationfilter
