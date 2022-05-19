@@ -39,7 +39,6 @@ namespace FluiTec.AppFx.Console.ConsoleItems
         /// <summary>   Executes the console application.  </summary>
         public int Run()
         {
-            // TODO: parse arguments and execute
             var modules = Items.Where(i => i is ModuleConsoleItem).Cast<ModuleConsoleItem>();
 
             var rootCommand = new RootCommand(Name);
