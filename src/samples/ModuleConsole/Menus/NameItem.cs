@@ -2,7 +2,7 @@
 using FluiTec.AppFx.Console.Modularization.InteractiveItems.Interfaces;
 using Spectre.Console;
 
-namespace InteractiveConsole.Menus;
+namespace ModuleConsole.Menus;
 
 /// <summary>   A name item. </summary>
 public class NameItem : CommandConsoleItem
@@ -21,7 +21,6 @@ public class NameItem : CommandConsoleItem
         {
             // do your thing
         }
-
         base.Display(parent);
     }
 }
