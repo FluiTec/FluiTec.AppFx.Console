@@ -1,11 +1,10 @@
-﻿using System.CommandLine;
-using CommandConsole.Commands;
+﻿using CommandConsole.Commands;
 using FluiTec.AppFx.Console.Hosting;
 using FluiTec.AppFx.Console.Modularization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace commandconsole;
+namespace CommandConsole;
 
 /// <summary>
 /// A startup.

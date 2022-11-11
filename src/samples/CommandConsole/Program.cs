@@ -1,7 +1,7 @@
 ﻿using FluiTec.AppFx.Console.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace commandconsole;
+namespace CommandConsole;
 
 /// <summary>
 /// A program.

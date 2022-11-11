@@ -3,7 +3,7 @@ using FluiTec.AppFx.Console.Modularization;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace commandconsole;
+namespace CommandConsole;
 
 /// <summary>
 /// Hosted program.
