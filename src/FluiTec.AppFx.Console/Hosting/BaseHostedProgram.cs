@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using System.Linq;
 using Microsoft.Extensions.Logging;
 
 namespace FluiTec.AppFx.Console.Hosting
@@ -34,7 +35,7 @@ namespace FluiTec.AppFx.Console.Hosting
         /// </returns>
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            var args = Environment.GetCommandLineArgs();
+            var args = Environment.GetCommandLineArgs().Skip(1).ToArray();
             _logger.LogDebug($"Start HostedProgram, Arguments:\r\n {string.Join(",", args)}");
 
             _liftetime.ApplicationStarted.Register(() =>
