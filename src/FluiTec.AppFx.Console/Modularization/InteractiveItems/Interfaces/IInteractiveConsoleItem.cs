@@ -1,4 +1,4 @@
-﻿namespace FluiTec.AppFx.Console.Modularization
+﻿namespace FluiTec.AppFx.Console.Modularization.InteractiveItems.Interfaces
 {
     /// <summary>   Interface for interactive console item. </summary>
     public interface IInteractiveConsoleItem

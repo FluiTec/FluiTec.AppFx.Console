@@ -1,4 +1,5 @@
 ﻿using FluiTec.AppFx.Console.Modularization.InteractiveItems.BaseItems;
+using FluiTec.AppFx.Console.Modularization.InteractiveItems.Interfaces;
 using Spectre.Console;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +49,6 @@ namespace FluiTec.AppFx.Console.Modularization.InteractiveItems.DefaultItems
             base.Display(parent);
 
             if (!Items.Any()) return;
-            AnsiConsole.Markup($"[gold3]{Name}[/]");
 
             var selected = AnsiConsole.Prompt(new SelectionPrompt<IInteractiveConsoleItem>()
                 .Title(PromptTitle)

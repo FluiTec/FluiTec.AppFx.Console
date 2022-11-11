@@ -1,4 +1,6 @@
-﻿namespace FluiTec.AppFx.Console.Modularization.InteractiveItems.DefaultItems
+﻿using FluiTec.AppFx.Console.Modularization.InteractiveItems.Interfaces;
+
+namespace FluiTec.AppFx.Console.Modularization.InteractiveItems.DefaultItems
 {
     /// <summary>   A back console item. </summary>
     public class BackConsoleItem : IInteractiveConsoleItem
