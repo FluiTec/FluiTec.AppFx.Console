@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using Microsoft.Extensions.Logging;
 
 namespace FluiTec.AppFx.Console.Hosting
 {
