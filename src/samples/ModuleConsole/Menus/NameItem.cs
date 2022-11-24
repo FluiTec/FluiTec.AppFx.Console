@@ -21,6 +21,7 @@ public class NameItem : CommandConsoleItem
         {
             // do your thing
         }
+
         base.Display(parent);
     }
 }

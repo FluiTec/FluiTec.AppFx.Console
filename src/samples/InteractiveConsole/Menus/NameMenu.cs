@@ -1,11 +1,10 @@
 ﻿using FluiTec.AppFx.Console.Modularization;
-using FluiTec.AppFx.Console.Modularization.InteractiveItems.BaseItems;
 using FluiTec.AppFx.Console.Modularization.InteractiveItems.DefaultItems;
 
 namespace InteractiveConsole.Menus;
 
 /// <summary>   A name menu. </summary>
-public class NameMenu : SelectConsoleItem, IConsoleMenu
+public class NameMenu : SelectConsoleItem, IInteractiveConsoleMenu
 {
     /// <summary>   Default constructor. </summary>
     public NameMenu() : base("Name")

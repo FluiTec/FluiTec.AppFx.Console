@@ -4,7 +4,7 @@ using FluiTec.AppFx.Console.Modularization.InteractiveItems.DefaultItems;
 namespace ModuleConsole.Menus;
 
 /// <summary>   A name menu. </summary>
-public class NameMenu : SelectConsoleItem, IConsoleMenu
+public class NameMenu : SelectConsoleItem, IInteractiveConsoleMenu
 {
     /// <summary>   Default constructor. </summary>
     public NameMenu() : base("Name")

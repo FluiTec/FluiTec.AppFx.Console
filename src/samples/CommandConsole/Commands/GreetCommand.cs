@@ -13,10 +13,7 @@ public class GreetCommand : IConsoleCommand
         var nameArgument = new Argument<string>("name", "Name of the person to greet");
         var cmd = new Command("--greet", "Greet");
         cmd.AddArgument(nameArgument);
-        cmd.SetHandler(nameValue =>
-        {
-            Console.WriteLine($"Hello {nameValue}!");
-        }, nameArgument);
+        cmd.SetHandler(nameValue => { Console.WriteLine($"Hello {nameValue}!"); }, nameArgument);
         return cmd;
     }
 }

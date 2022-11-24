@@ -7,14 +7,13 @@ using Microsoft.Extensions.Hosting;
 namespace CommandConsole;
 
 /// <summary>
-/// A startup.
+///     A startup.
 /// </summary>
 public class Startup : DefaultStartup
 {
     /// <summary>
-    /// Configure services.
+    ///     Configure services.
     /// </summary>
-    ///
     /// <param name="context">  The context. </param>
     /// <param name="services"> The services. </param>
     public override void ConfigureServices(HostBuilderContext context, IServiceCollection services)

@@ -5,25 +5,23 @@ using Microsoft.Extensions.Logging;
 namespace SimpleConsole;
 
 /// <summary>
-/// Hosted program.
+///     Hosted program.
 /// </summary>
-public class HostedProgram : BaseHostedProgram
+public class HostedProgram : ConsoleHostedProgram
 {
     /// <summary>
-    /// Constructor.
+    ///     Constructor.
     /// </summary>
-    ///
     /// <param name="logger">   The logger. </param>
     /// <param name="lifetime"> The lifetime. </param>
-    public HostedProgram(ILogger<BaseHostedProgram> logger, IHostApplicationLifetime lifetime)
+    public HostedProgram(ILogger<ConsoleHostedProgram> logger, IHostApplicationLifetime lifetime)
         : base(logger, lifetime)
     {
     }
 
     /// <summary>
-    /// Runs the given arguments.
+    ///     Runs the given arguments.
     /// </summary>
-    ///
     /// <param name="args"> The arguments. </param>
     public override void Run(string[] args)
     {

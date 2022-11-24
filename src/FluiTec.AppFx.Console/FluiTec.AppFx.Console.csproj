@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
@@ -9,6 +9,7 @@
         <RepositoryUrl>https://github.com/FluiTec/FluiTec.AppFx.Console</RepositoryUrl>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <Nullable>disable</Nullable>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -27,6 +28,12 @@
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
 		<PackageReference Include="Spectre.Console.ImageSharp" Version="0.45.0" />
 		<PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+		<PackageReference Include="Terminal.Gui" Version="1.8.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Hosting\WindowHosting\" />
+	  <Folder Include="Modularization\WindowItems\ListDataSource\" />
 	</ItemGroup>
 
 </Project>

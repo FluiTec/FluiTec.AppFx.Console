@@ -4,14 +4,13 @@ using Microsoft.Extensions.Hosting;
 namespace ModuleConsole;
 
 /// <summary>
-/// A program.
+///     A program.
 /// </summary>
 internal class Program
 {
     /// <summary>
-    /// Main entry-point for this application.
+    ///     Main entry-point for this application.
     /// </summary>
-    ///
     /// <param name="args"> The arguments. </param>
     private static async Task Main(string[] args)
     {
@@ -20,13 +19,11 @@ internal class Program
     }
 
     /// <summary>
-    /// Creates host builder.
+    ///     Creates host builder.
     /// </summary>
-    ///
     /// <param name="args"> The arguments. </param>
-    ///
     /// <returns>
-    /// The new host builder.
+    ///     The new host builder.
     /// </returns>
     public static IHostBuilder CreateHostBuilder(string[] args)
     {
