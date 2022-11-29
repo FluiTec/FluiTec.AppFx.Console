@@ -1,6 +1,7 @@
 # License overview of included 3rd party libraries  #
  
 ## MIT License ##
+see https://licenses.nuget.org/MIT
 ### Libraries ###
 * System.CommandLine by Microsoft
 * Microsoft.Extensions.* by Microsoft
