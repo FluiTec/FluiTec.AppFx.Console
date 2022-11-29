@@ -7,5 +7,3 @@ see https://licenses.nuget.org/MIT
 * Microsoft.Extensions.* by Microsoft
 * Spectre.Console.ImageSharp by Patrik Svensson, Phil Scott, Nils Andresen
 * Terminal.Gui by Miguel de Icaza, Charlie Kindel (@tig), @BDisp
-### License ###
-https://licenses.nuget.org/MIT
