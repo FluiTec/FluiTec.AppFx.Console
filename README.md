@@ -1,10 +1,6 @@
-# README #
+# FluiTec.AppFx.Console #
 
-## AppFx ##
-
-#### Console ####
-
-* FluiTec.AppFx.Console : simplify common console-tasks
+Simplifies creating simple and modularized console-applications
 
 ### build ###
 #### master ####
