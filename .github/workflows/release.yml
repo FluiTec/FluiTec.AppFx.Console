@@ -33,6 +33,6 @@ jobs:
     - name: write-current
       uses: DamianReeves/write-file-action@master
       with:
-        path: ${{ env.home}}/.bashrc
+        path: ./current.version
         contents: ${{ steps.bump.outputs.next-version }}
         write-mode: overwrite
