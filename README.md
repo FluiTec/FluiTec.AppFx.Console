@@ -6,10 +6,11 @@
 
 * FluiTec.AppFx.Console : simplify common console-tasks
 
-### Build ###
-
-[![build-master](https://github.com/FluiTec/FluiTec.AppFx.Console/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/FluiTec/FluiTec.AppFx.Console/actions/workflows/build.yml)
-[![build-develop](https://github.com/FluiTec/FluiTec.AppFx.Console/actions/workflows/build.yml/badge.svg?branch=develop)](https://github.com/FluiTec/FluiTec.AppFx.Console/actions/workflows/build.yml)
+### build ###
+#### master ####
+[![build](https://github.com/FluiTec/FluiTec.AppFx.Console/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/FluiTec/FluiTec.AppFx.Console/actions/workflows/build.yml)
+#### develop ####
+[![build](https://github.com/FluiTec/FluiTec.AppFx.Console/actions/workflows/build.yml/badge.svg?branch=develop)](https://github.com/FluiTec/FluiTec.AppFx.Console/actions/workflows/build.yml)
 
 ### Nuget ###
 
