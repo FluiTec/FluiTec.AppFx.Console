@@ -13,6 +13,7 @@ jobs:
   bump:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v3
     - name: read-current
       id: package
       uses: juliangruber/read-file-action@v1
