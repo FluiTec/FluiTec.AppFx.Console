@@ -1,0 +1,54 @@
+trigger:
+- master
+- develop
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+
+  projectVersion: '1.1'
+  buildNumber: '$(Build.BuildId)'
+  versionNumber: '$(projectVersion).$(buildNumber)'
+  
+  srcDir: 'src'
+  projectName: 'FluiTec.AppFx.Console'  
+  testfilter: 'FullyQualifiedName~FluiTec.AppFx.Console&FullyQualifiedName~.Tests'
+  integrationfilter: 'FullyQualifiedName~FluiTec.AppFx.Console&FullyQualifiedName~.IntegrationTests'
+
+steps:
+- task: UseDotNet@2
+  displayName: '.NET 7'
+  inputs:
+    performMultiLevelLookup: true
+    packageType: 'sdk'
+    version: '7.x'
+
+- script: dotnet restore --verbosity minimal
+  displayName: restore
+  workingDirectory: $(srcDir)
+
+- script: dotnet build -c Release --no-restore /p:Version=$(versionNumber)
+  displayName: build
+  workingDirectory: $(srcDir)
+
+- script: dotnet test --no-restore --verbosity minimal --filter "$(testfilter)"
+  displayName: unit tests
+  workingDirectory: $(srcDir)
+
+- script: dotnet test --no-restore --verbosity minimal --filter "$(integrationfilter)"
+  displayName: integration tests
+  workingDirectory: $(srcDir)
+  condition: eq(variables.isMaster, 'true')
+
+- task: DotNetCoreCLI@2
+  displayName: push (azure)
+  inputs:
+    command: 'push'
+    versioningScheme: byEnvVar
+    versionEnvVar: versionNumbe
+    arguments: --skip-duplicate
+    packagesToPush: '**/*.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'e57c5449-e07f-4b4b-af6f-678d71f49ad0'

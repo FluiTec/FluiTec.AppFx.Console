@@ -5,8 +5,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{745B0F45-B16D-4DA0-8A6F-B70755641FC3}"
 	ProjectSection(SolutionItems) = preProject
 		..\.gitignore = ..\.gitignore
-		..\.gitlab-ci.yml = ..\.gitlab-ci.yml
-		..\.version = ..\.version
+		..\current.version = ..\current.version
 		..\LICENSE.md = ..\LICENSE.md
 		..\README.md = ..\README.md
 		..\THIRD_PARTY_LICENSES.md = ..\THIRD_PARTY_LICENSES.md
@@ -24,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InteractiveConsole", "sampl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuleConsole", "samples\ModuleConsole\ModuleConsole.csproj", "{C91E2EE4-D24D-4427-89D2-F3DF7852C53F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowConsole", "samples\WindowConsole\WindowConsole.csproj", "{9A9FBD81-E529-4B2D-996C-81291C9C2AE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowConsole", "samples\WindowConsole\WindowConsole.csproj", "{9A9FBD81-E529-4B2D-996C-81291C9C2AE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
