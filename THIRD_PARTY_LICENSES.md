@@ -1,8 +1,10 @@
-# MIT License #
-## Applies to the following projects ##
-* System.CommandLine
-* Microsoft.Extensions.*
-* Spectre.Console.ImageSharp
-* Terminal.Gui
-## Url ##
+# License overview of included 3rd party libraries  #
+ 
+## MIT License ##
+### Libraries ###
+* System.CommandLine by Microsoft
+* Microsoft.Extensions.* by Microsoft
+* Spectre.Console.ImageSharp by Patrik Svensson, Phil Scott, Nils Andresen
+* Terminal.Gui by Miguel de Icaza, Charlie Kindel (@tig), @BDisp
+### License ###
 https://licenses.nuget.org/MIT
