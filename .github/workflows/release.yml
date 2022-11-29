@@ -10,14 +10,15 @@ on:
         required: true
 
 jobs:
-  bummp:
+  bump:
     runs-on: ubuntu-latest
     steps:
     - name: read-current
       id: package
       uses: juliangruber/read-file-action@v1
       with:
-        path: ./.version
+        path: ./current.version
+        trim: true
     - name: echo-current
       run: echo "${{ steps.package.outputs.content }}"
     - name: increment
