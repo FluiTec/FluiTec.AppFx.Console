@@ -2,7 +2,6 @@ name: bump
 
 on:
   workflow_dispatch:
-    # Inputs the workflow accepts.
     inputs:
       version-fragment:
         description: 'Version-Fragment to increment'
