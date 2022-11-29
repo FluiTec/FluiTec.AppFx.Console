@@ -8,7 +8,8 @@
 
 ### Build ###
 
-[![Build status](https://ci.appveyor.com/api/projects/status/r8keo6ws6f56auas?svg=true)](https://ci.appveyor.com/project/IInvocation/fluitec-appfx-console)
+[![build-master](https://github.com/FluiTec/FluiTec.AppFx.Console/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/FluiTec/FluiTec.AppFx.Console/actions/workflows/build.yml)
+[![build-develop](https://github.com/FluiTec/FluiTec.AppFx.Console/actions/workflows/build.yml/badge.svg?branch=develop)](https://github.com/FluiTec/FluiTec.AppFx.Console/actions/workflows/build.yml)
 
 ### Nuget ###
 
