@@ -1,0 +1,30 @@
+name: release
+
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      version-fragment:
+        description: 'Version-Fragment to increment'
+        default: 'bug'
+        required: true
+
+jobs:
+  bummp:
+    runs-on: ubuntu-latest
+    steps:
+    - name: read-current
+      id: package
+      uses: juliangruber/read-file-action@v1
+      with:
+        path: .version
+    - name: echo-current
+      run: echo "${{ steps.package.outputs.content }}"
+    - name: increment
+      id: bump-current
+      uses: christian-draeger/increment-semantic-version@1.0.3
+      with:
+        current-version: "${{ steps.package.outputs.content }}"
+        version-fragment: ${{ github.event.inputs.version-fragment }}
+    - name: echo-new
+      run: echo ${{ steps.bump.outputs.next-version }}
