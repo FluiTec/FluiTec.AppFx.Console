@@ -17,7 +17,7 @@ jobs:
       id: package
       uses: juliangruber/read-file-action@v1
       with:
-        path: .version
+        path: ./.version
     - name: echo-current
       run: echo "${{ steps.package.outputs.content }}"
     - name: increment
