@@ -32,4 +32,4 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: publish
       if: steps.test.conclusion == 'success'
-      run: echo "test"
+      run: dotnet nuget push -s https://nuget.pkg.github.com/fluitec/index.json -k ${{ secrets.package_pat }} **/*.nupkg --skip-duplicate
