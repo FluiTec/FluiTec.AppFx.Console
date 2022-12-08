@@ -30,6 +30,9 @@ jobs:
     - name: test
       id: test
       run: dotnet test --no-build --verbosity normal
-    - name: publish
+    - name: publish@github
       if: steps.test.conclusion == 'success'
       run: dotnet nuget push -s https://nuget.pkg.github.com/fluitec/index.json -k ${{ secrets.package_pat }} **/*.nupkg --skip-duplicate
+    - name: publish@baget
+      if: steps.test.conclusion == 'success'
+      run: dotnet nuget push -s https://baget.wtschnell.de/v3/index.json -k ${{ secrets.baget_apikey }} **/*.nupkg --skip-duplicate
