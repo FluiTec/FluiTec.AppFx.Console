@@ -36,3 +36,6 @@ jobs:
     - name: publish@github
       if: steps.test.conclusion == 'success'
       run: dotnet nuget push -s https://nuget.pkg.github.com/fluitec/index.json -k ${{ secrets.package_pat }} **/*.nupkg --skip-duplicate
+    - name: publish@nuget
+      if: steps.test.conclusion == 'success'
+      run: dotnet nuget push -s https://api.nuget.org/v3/index.json -k ${{ secrets.nuget_apikey }} **/*.nupkg --skip-duplicate
