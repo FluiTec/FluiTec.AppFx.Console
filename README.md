@@ -11,4 +11,4 @@ Simplifies creating simple and modularized console-applications
 
 ## packages
 ### nuget ###
-[![Nuget version](https://img.shields.io/nuget/v/FluiTec.AppFx.Options.svg)](https://www.nuget.org/packages/FluiTec.AppFx.Options/)
+[![Nuget version](https://img.shields.io/nuget/v/FluiTec.AppFx.Console.svg)](https://www.nuget.org/packages/FluiTec.AppFx.Console/)
