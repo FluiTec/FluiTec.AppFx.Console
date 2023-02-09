@@ -10,11 +10,10 @@ namespace CommandConsole;
 /// </summary>
 public class HostedProgram : ConsoleHostedCommandProgram
 {
-    /// <summary>
-    ///     Constructor.
-    /// </summary>
+    /// <summary>   Constructor. </summary>
     /// <param name="logger">   The logger. </param>
     /// <param name="lifetime"> The lifetime. </param>
+    /// <param name="commands"> The commands. </param>
     public HostedProgram(ILogger<ConsoleHostedProgram> logger, IHostApplicationLifetime lifetime,
         IEnumerable<IConsoleCommand> commands)
         : base(logger, lifetime, commands)

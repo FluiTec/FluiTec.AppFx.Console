@@ -25,6 +25,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuleConsole", "samples\Mo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowConsole", "samples\WindowConsole\WindowConsole.csproj", "{9A9FBD81-E529-4B2D-996C-81291C9C2AE9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{9BA43D6A-1A4E-4BC4-AC48-1FE67185F7E4}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\build.yml = ..\.github\workflows\build.yml
+		..\.github\workflows\bump.yml = ..\.github\workflows\bump.yml
+		..\.github\workflows\release.yml = ..\.github\workflows\release.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +124,7 @@ Global
 		{8A2E2DCC-E093-4035-8756-E85FF3B277A8} = {84FFE8E5-C514-458D-8283-FB5A38ACAA5D}
 		{C91E2EE4-D24D-4427-89D2-F3DF7852C53F} = {84FFE8E5-C514-458D-8283-FB5A38ACAA5D}
 		{9A9FBD81-E529-4B2D-996C-81291C9C2AE9} = {84FFE8E5-C514-458D-8283-FB5A38ACAA5D}
+		{9BA43D6A-1A4E-4BC4-AC48-1FE67185F7E4} = {745B0F45-B16D-4DA0-8A6F-B70755641FC3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C9013DE6-1292-48E0-86C8-C3A0FA9674A8}
