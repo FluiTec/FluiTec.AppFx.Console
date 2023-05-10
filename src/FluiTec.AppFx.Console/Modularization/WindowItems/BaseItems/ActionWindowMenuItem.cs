@@ -12,9 +12,8 @@ public class ActionWindowMenuItem : WindowMenuItem
     /// </summary>
     /// <param name="title">    The title. </param>
     /// <param name="execute">  The execute. </param>
-    public ActionWindowMenuItem(string title, Action execute)
+    public ActionWindowMenuItem(string title, Action execute) : base(title)
     {
-        Title = title;
         Execute = execute;
         CanExecute = () => true;
     }

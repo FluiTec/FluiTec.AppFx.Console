@@ -23,7 +23,7 @@ public interface IWindowMenuItem
     /// <value>
     ///     The parent title.
     /// </value>
-    string ParentTitle { get; }
+    string? ParentTitle { get; }
 
     /// <summary>
     ///     Gets the before title.
@@ -31,7 +31,7 @@ public interface IWindowMenuItem
     /// <value>
     ///     The before title.
     /// </value>
-    string BeforeTitle { get; }
+    string? BeforeTitle { get; }
 
     /// <summary>
     ///     Gets the after title.
@@ -39,7 +39,7 @@ public interface IWindowMenuItem
     /// <value>
     ///     The after title.
     /// </value>
-    string AfterTitle { get; }
+    string? AfterTitle { get; }
 
     /// <summary>
     ///     Gets the shortcut.
@@ -55,7 +55,7 @@ public interface IWindowMenuItem
     /// <value>
     ///     The execute.
     /// </value>
-    Action Execute { get; }
+    Action? Execute { get; }
 
     /// <summary>
     ///     Gets the can execute.
@@ -63,7 +63,7 @@ public interface IWindowMenuItem
     /// <value>
     ///     A function delegate that yields a bool.
     /// </value>
-    Func<bool> CanExecute { get; }
+    Func<bool>? CanExecute { get; }
 
     /// <summary>
     ///     Gets the children.

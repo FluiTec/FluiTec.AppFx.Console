@@ -15,7 +15,7 @@ public class ExitConsoleItem : ConsoleItem
     }
 
     /// <summary>   Displays this. </summary>
-    public override void Display(IInteractiveConsoleItem parent)
+    public override void Display(IInteractiveConsoleItem? parent)
     {
         AnsiConsole.Markup($"[gold3]{Name}[/]");
     }

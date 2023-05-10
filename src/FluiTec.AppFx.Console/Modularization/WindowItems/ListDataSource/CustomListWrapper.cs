@@ -23,7 +23,6 @@ public class CustomListWrapper<T> : IListDataSource
     /// <param name="source"></param>
     public CustomListWrapper(IList<T> source)
     {
-        if (source == null) return;
         _count = source.Count;
         _marks = new BitArray(_count);
         Src = source;
@@ -105,14 +104,16 @@ public class CustomListWrapper<T> : IListDataSource
         return (IList)Src;
     }
 
+    /// <summary>   Gets maximum length item. </summary>
+    /// <returns>   The maximum length item. </returns>
     private int GetMaxLengthItem()
     {
-        if (Src == null || Src?.Count == 0) return 0;
+        if (Src.Count == 0) return 0;
 
         var maxLength = 0;
-        Debug.Assert(Src != null, nameof(Src) + " != null");
         foreach (var t in Src)
         {
+            if (t == null) continue;
             var l = t switch
             {
                 ustring u => u.RuneCount,
@@ -126,6 +127,13 @@ public class CustomListWrapper<T> : IListDataSource
         return maxLength;
     }
 
+    /// <summary>   Renders the ustring. </summary>
+    /// <param name="driver">   The driver used by the caller. </param>
+    /// <param name="ustr">     The ustring. </param>
+    /// <param name="col">      The col where to move. </param>
+    /// <param name="line">     The line where to move. </param>
+    /// <param name="width">    The item width. </param>
+    /// <param name="start">    (Optional) The index of the string to be displayed. </param>
     protected static void RenderUstr(ConsoleDriver driver, ustring ustr, int col, int line, int width, int start = 0)
     {
         var byteLen = ustr.Length;

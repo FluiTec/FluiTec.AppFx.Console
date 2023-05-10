@@ -13,9 +13,9 @@ public interface IInteractiveConsoleItem
 
     /// <summary>   Gets the parent. </summary>
     /// <value> The parent. </value>
-    IInteractiveConsoleItem Parent { get; }
+    IInteractiveConsoleItem? Parent { get; }
 
     /// <summary>   Displays the given parent. </summary>
     /// <param name="parent">   The parent. </param>
-    void Display(IInteractiveConsoleItem parent);
+    void Display(IInteractiveConsoleItem? parent);
 }

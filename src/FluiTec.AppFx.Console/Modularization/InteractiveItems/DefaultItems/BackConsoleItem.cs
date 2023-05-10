@@ -15,11 +15,11 @@ public class BackConsoleItem : IInteractiveConsoleItem
 
     /// <summary>   Gets or sets the parent. </summary>
     /// <value> The parent. </value>
-    public IInteractiveConsoleItem Parent { get; private set; }
+    public IInteractiveConsoleItem? Parent { get; private set; }
 
     /// <summary>   Displays this. </summary>
     /// <param name="parent">   The parent. </param>
-    public void Display(IInteractiveConsoleItem parent)
+    public void Display(IInteractiveConsoleItem? parent)
     {
         Parent = parent?.Parent;
         Parent?.Display(null);

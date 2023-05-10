@@ -15,7 +15,7 @@ public class NameItem : CommandConsoleItem
 
     /// <summary>   Displays this. </summary>
     /// <param name="parent">   The parent. </param>
-    public override void Display(IInteractiveConsoleItem parent)
+    public override void Display(IInteractiveConsoleItem? parent)
     {
         if (AnsiConsole.Confirm($"You sure you wanna pick {Name}?"))
         {

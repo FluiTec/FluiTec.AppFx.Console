@@ -44,7 +44,7 @@ public abstract class SelectConsoleItem : ConsoleItem
 
     /// <summary>   Displays this. </summary>
     /// <param name="parent">   The parent. </param>
-    public override void Display(IInteractiveConsoleItem parent)
+    public override void Display(IInteractiveConsoleItem? parent)
     {
         base.Display(parent);
 

@@ -12,8 +12,9 @@ public abstract class WindowMenuItem : IWindowMenuItem
     /// <summary>
     ///     Specialized default constructor for use only by derived class.
     /// </summary>
-    protected WindowMenuItem()
+    protected WindowMenuItem(string title)
     {
+        Title = title;
         Children = new List<IWindowMenuItem>();
     }
 
@@ -31,7 +32,7 @@ public abstract class WindowMenuItem : IWindowMenuItem
     /// <value>
     ///     The parent title.
     /// </value>
-    public string ParentTitle { get; init; }
+    public string? ParentTitle { get; init; }
 
     /// <summary>
     ///     Gets or sets the before title.
@@ -39,7 +40,7 @@ public abstract class WindowMenuItem : IWindowMenuItem
     /// <value>
     ///     The before title.
     /// </value>
-    public string BeforeTitle { get; init; }
+    public string? BeforeTitle { get; init; }
 
     /// <summary>
     ///     Gets or sets the after title.
@@ -47,7 +48,7 @@ public abstract class WindowMenuItem : IWindowMenuItem
     /// <value>
     ///     The after title.
     /// </value>
-    public string AfterTitle { get; init; }
+    public string? AfterTitle { get; init; }
 
     /// <summary>
     ///     Gets or sets the shortcut.
@@ -63,7 +64,7 @@ public abstract class WindowMenuItem : IWindowMenuItem
     /// <value>
     ///     The execute.
     /// </value>
-    public Action Execute { get; init; }
+    public Action? Execute { get; init; }
 
     /// <summary>
     ///     Gets or sets the can execute.
@@ -71,7 +72,7 @@ public abstract class WindowMenuItem : IWindowMenuItem
     /// <value>
     ///     A function delegate that yields a bool.
     /// </value>
-    public Func<bool> CanExecute { get; init; }
+    public Func<bool>? CanExecute { get; init; }
 
     public IList<IWindowMenuItem> Children { get; init; }
 }

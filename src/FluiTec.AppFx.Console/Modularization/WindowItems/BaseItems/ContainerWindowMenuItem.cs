@@ -9,9 +9,8 @@ public class ContainerWindowMenuItem : WindowMenuItem
     ///     Constructor.
     /// </summary>
     /// <param name="title">    The title. </param>
-    public ContainerWindowMenuItem(string title)
+    public ContainerWindowMenuItem(string title) : base(title)
     {
-        Title = title;
     }
 
     /// <summary>

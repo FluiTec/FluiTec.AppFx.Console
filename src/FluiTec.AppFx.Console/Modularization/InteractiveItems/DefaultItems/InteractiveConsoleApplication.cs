@@ -22,7 +22,7 @@ public class InteractiveConsoleApplication : SelectConsoleItem
     }
 
     /// <summary>   Displays this. </summary>
-    public override void Display(IInteractiveConsoleItem parent)
+    public override void Display(IInteractiveConsoleItem? parent)
     {
         AnsiConsole.Clear();
         base.Display(parent);

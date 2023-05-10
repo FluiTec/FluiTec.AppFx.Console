@@ -28,11 +28,11 @@ public abstract class ConsoleItem : IInteractiveConsoleItem
 
     /// <summary>   Gets the parent. </summary>
     /// <value> The parent. </value>
-    public IInteractiveConsoleItem Parent { get; protected set; }
+    public IInteractiveConsoleItem? Parent { get; protected set; }
 
     /// <summary>   Displays this. </summary>
     /// <param name="parent">   The parent. </param>
-    public virtual void Display(IInteractiveConsoleItem parent)
+    public virtual void Display(IInteractiveConsoleItem? parent)
     {
         if (parent != null)
             Parent = parent;
