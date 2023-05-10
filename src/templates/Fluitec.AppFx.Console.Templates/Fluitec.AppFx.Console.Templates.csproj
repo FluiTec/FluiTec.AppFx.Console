@@ -1,0 +1,93 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<PackageType>Template</PackageType>
+		<PackageVersion>1.0</PackageVersion>
+		<PackageId>FluiTec.Appfx.Console.SimpleConsole</PackageId>
+		<Title>FluiTec.Appfx.Console.SimpleConsole</Title>
+		<Authors>Achim Schnell</Authors>
+		<Description>Console application using FluiTec.AppFx.Console</Description>
+		<PackageTags>dotnet-new;templates;fluitec;appfx</PackageTags>
+		<TargetFramework>net7.0</TargetFramework>
+		<IncludeContentInPack>true</IncludeContentInPack>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<ContentTargetFolders>content</ContentTargetFolders>
+		<NoWarn>$(NoWarn);NU5128</NoWarn>
+		<NoDefaultExcludes>true</NoDefaultExcludes>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluiTec.AppFx.Console" Version="1.2.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
+		<Compile Remove="**\*" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="templates\CommandConsole\Commands\GreetCommand.cs" />
+	  <Content Remove="templates\InteractiveConsole\appsettings.json" />
+	  <Content Remove="templates\InteractiveConsole\HostedProgram.cs" />
+	  <Content Remove="templates\InteractiveConsole\Menus\NameItem.cs" />
+	  <Content Remove="templates\InteractiveConsole\Menus\NameMenu.cs" />
+	  <Content Remove="templates\InteractiveConsole\Program.cs" />
+	  <Content Remove="templates\InteractiveConsole\Startup.cs" />
+	  <Content Remove="templates\ModuleConsole\appsettings.json" />
+	  <Content Remove="templates\ModuleConsole\Commands\GreetCommand.cs" />
+	  <Content Remove="templates\ModuleConsole\HostedProgram.cs" />
+	  <Content Remove="templates\ModuleConsole\Menus\NameItem.cs" />
+	  <Content Remove="templates\ModuleConsole\Menus\NameMenu.cs" />
+	  <Content Remove="templates\ModuleConsole\Modules\TestModule.cs" />
+	  <Content Remove="templates\ModuleConsole\Program.cs" />
+	  <Content Remove="templates\ModuleConsole\Startup.cs" />
+	  <Content Remove="templates\WindowConsole\appsettings.json" />
+	  <Content Remove="templates\WindowConsole\HostedProgram.cs" />
+	  <Content Remove="templates\WindowConsole\Program.cs" />
+	  <Content Remove="templates\WindowConsole\Startup.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="templates\CommandConsole\appsettings.json" />
+		<None Remove="templates\SimpleConsole\appsettings.json" />
+		<None Remove="templates\tests\install.ps1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Include="templates\CommandConsole\Commands\GreetCommand.cs" />
+	  <Compile Include="templates\InteractiveConsole\HostedProgram.cs" />
+	  <Compile Include="templates\InteractiveConsole\Menus\NameItem.cs" />
+	  <Compile Include="templates\InteractiveConsole\Menus\NameMenu.cs" />
+	  <Compile Include="templates\InteractiveConsole\Program.cs" />
+	  <Compile Include="templates\InteractiveConsole\Startup.cs" />
+	  <Compile Include="templates\ModuleConsole\Commands\GreetCommand.cs" />
+	  <Compile Include="templates\ModuleConsole\HostedProgram.cs" />
+	  <Compile Include="templates\ModuleConsole\Menus\NameItem.cs" />
+	  <Compile Include="templates\ModuleConsole\Menus\NameMenu.cs" />
+	  <Compile Include="templates\ModuleConsole\Modules\TestModule.cs" />
+	  <Compile Include="templates\ModuleConsole\Program.cs" />
+	  <Compile Include="templates\ModuleConsole\Startup.cs" />
+	  <Compile Include="templates\WindowConsole\HostedProgram.cs" />
+	  <Compile Include="templates\WindowConsole\Program.cs" />
+	  <Compile Include="templates\WindowConsole\Startup.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="templates\InteractiveConsole\appsettings.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="templates\ModuleConsole\appsettings.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="templates\WindowConsole\appsettings.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+</Project>

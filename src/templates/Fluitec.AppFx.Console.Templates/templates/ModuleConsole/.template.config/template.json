@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Achim Schnell",
+  "classifications": [ "Common", "Console" ],
+  "identity": "FluiTec.Appfx.Console.ModuleConsole",
+  "name": "Console application providing modules using FluiTec.AppFx.Console",
+  "shortName": "fluitec-module-console",
+  "sourceName": "Fluitec.AppFx.Console.Templates.templates.ModuleConsole",
+  "tags": {
+    "type": "project",
+    "language": "C#"
+  }
+}

@@ -32,6 +32,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		..\.github\workflows\release.yml = ..\.github\workflows\release.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{B356B426-A9DC-48AB-B328-B1613400820B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluitec.AppFx.Console.Templates", "templates\Fluitec.AppFx.Console.Templates\Fluitec.AppFx.Console.Templates.csproj", "{6210A8BD-233D-4704-AA3F-F20135520355}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -114,6 +118,18 @@ Global
 		{9A9FBD81-E529-4B2D-996C-81291C9C2AE9}.Release|x64.Build.0 = Release|Any CPU
 		{9A9FBD81-E529-4B2D-996C-81291C9C2AE9}.Release|x86.ActiveCfg = Release|Any CPU
 		{9A9FBD81-E529-4B2D-996C-81291C9C2AE9}.Release|x86.Build.0 = Release|Any CPU
+		{6210A8BD-233D-4704-AA3F-F20135520355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6210A8BD-233D-4704-AA3F-F20135520355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6210A8BD-233D-4704-AA3F-F20135520355}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6210A8BD-233D-4704-AA3F-F20135520355}.Debug|x64.Build.0 = Debug|Any CPU
+		{6210A8BD-233D-4704-AA3F-F20135520355}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6210A8BD-233D-4704-AA3F-F20135520355}.Debug|x86.Build.0 = Debug|Any CPU
+		{6210A8BD-233D-4704-AA3F-F20135520355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6210A8BD-233D-4704-AA3F-F20135520355}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6210A8BD-233D-4704-AA3F-F20135520355}.Release|x64.ActiveCfg = Release|Any CPU
+		{6210A8BD-233D-4704-AA3F-F20135520355}.Release|x64.Build.0 = Release|Any CPU
+		{6210A8BD-233D-4704-AA3F-F20135520355}.Release|x86.ActiveCfg = Release|Any CPU
+		{6210A8BD-233D-4704-AA3F-F20135520355}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,6 +141,7 @@ Global
 		{C91E2EE4-D24D-4427-89D2-F3DF7852C53F} = {84FFE8E5-C514-458D-8283-FB5A38ACAA5D}
 		{9A9FBD81-E529-4B2D-996C-81291C9C2AE9} = {84FFE8E5-C514-458D-8283-FB5A38ACAA5D}
 		{9BA43D6A-1A4E-4BC4-AC48-1FE67185F7E4} = {745B0F45-B16D-4DA0-8A6F-B70755641FC3}
+		{6210A8BD-233D-4704-AA3F-F20135520355} = {B356B426-A9DC-48AB-B328-B1613400820B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C9013DE6-1292-48E0-86C8-C3A0FA9674A8}
