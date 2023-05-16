@@ -4,13 +4,16 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageProjectUrl>https://www.nuget.org/packages/FluiTec.AppFx.Console/</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/FluiTec/FluiTec.AppFx.Console</RepositoryUrl>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<PackageType>Template</PackageType>
-		<PackageVersion>1.0</PackageVersion>
-		<PackageId>FluiTec.Appfx.Console.SimpleConsole</PackageId>
-		<Title>FluiTec.Appfx.Console.SimpleConsole</Title>
+		<PackageId>FluiTec.Appfx.Console.Templates</PackageId>
+		<Title>FluiTec.Appfx.Console.Templates</Title>
 		<Authors>Achim Schnell</Authors>
 		<Description>Console application using FluiTec.AppFx.Console</Description>
 		<PackageTags>dotnet-new;templates;fluitec;appfx</PackageTags>
