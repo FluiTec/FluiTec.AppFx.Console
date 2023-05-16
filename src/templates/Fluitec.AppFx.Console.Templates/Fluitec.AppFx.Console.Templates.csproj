@@ -26,7 +26,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="FluiTec.AppFx.Console" Version="1.2.4" />
+		<None Include="..\..\..\LICENSE.md">
+			<Pack>True</Pack>
+			<PackagePath />
+		</None>
+		<None Include="..\..\..\THIRD_PARTY_LICENSES.md">
+			<Pack>True</Pack>
+			<PackagePath />
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -79,6 +86,10 @@
 	  <Compile Include="templates\WindowConsole\HostedProgram.cs" />
 	  <Compile Include="templates\WindowConsole\Program.cs" />
 	  <Compile Include="templates\WindowConsole\Startup.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\FluiTec.AppFx.Console\FluiTec.AppFx.Console.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
