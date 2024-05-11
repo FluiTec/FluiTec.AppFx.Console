@@ -118,7 +118,7 @@ public class CustomListWrapper<T> : IListDataSource
             {
                 ustring u => u.RuneCount,
                 string s => s.Length,
-                _ => t.ToString().Length
+                _ => t.ToString()!.Length
             };
 
             if (l > maxLength) maxLength = l;
